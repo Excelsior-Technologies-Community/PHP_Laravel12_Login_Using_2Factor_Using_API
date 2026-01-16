@@ -1,6 +1,22 @@
 # PHP_Laravel12_Login_Using_2Factor_Using_API
 
-
+<p align="center">
+  <a href="https://laravel.com">
+    <img src="https://img.shields.io/badge/Laravel-12-red" alt="Laravel Version">
+  </a>
+  <a href="https://www.php.net/">
+    <img src="https://img.shields.io/badge/PHP-8.2-blue" alt="PHP Version">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Auth-Google%202FA-success" alt="Google 2FA">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/API-Sanctum-orange" alt="Laravel Sanctum">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Status-Working-brightgreen" alt="Project Status">
+  </a>
+</p>
 
 ---
 
