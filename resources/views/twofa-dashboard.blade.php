@@ -44,13 +44,14 @@
                     </p>
                 </div>
 
-                <div id="headerUser"
-                     class="hidden text-right">
+                <div id="headerUser" class="hidden text-right">
 
                     <div class="font-semibold" id="headerUserName"></div>
 
-                    <div class="text-xs text-slate-400"
-                         id="headerUserEmail"></div>
+                    <div
+                        class="text-xs text-slate-400"
+                        id="headerUserEmail"
+                    ></div>
 
                 </div>
 
@@ -69,11 +70,10 @@
 
 
         <!-- =================================================
-             LOGIN SECTION
+             LOGIN
         ================================================== -->
 
-        <section id="loginSection"
-                 class="max-w-md mx-auto">
+        <section id="loginSection" class="max-w-md mx-auto">
 
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl">
 
@@ -96,8 +96,7 @@
                 </div>
 
 
-                <form id="loginForm"
-                      class="space-y-5">
+                <form id="loginForm" class="space-y-5">
 
                     <div>
 
@@ -135,7 +134,8 @@
 
                     <button
                         type="submit"
-                        class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 rounded-xl transition">
+                        class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 rounded-xl transition"
+                    >
 
                         <i class="fa-solid fa-right-to-bracket"></i>
 
@@ -145,9 +145,11 @@
 
                 </form>
 
-                <div id="loginMessage"
-                     class="hidden mt-5 p-4 rounded-xl text-sm">
-                </div>
+
+                <div
+                    id="loginMessage"
+                    class="hidden mt-5 p-4 rounded-xl text-sm"
+                ></div>
 
             </div>
 
@@ -155,11 +157,13 @@
 
 
         <!-- =================================================
-             2FA SECTION
+             2FA
         ================================================== -->
 
-        <section id="twoFactorSection"
-                 class="hidden max-w-2xl mx-auto">
+        <section
+            id="twoFactorSection"
+            class="hidden max-w-2xl mx-auto"
+        >
 
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
 
@@ -184,8 +188,10 @@
 
                 <!-- SETUP -->
 
-                <div id="setupBox"
-                     class="hidden mb-8">
+                <div
+                    id="setupBox"
+                    class="hidden mb-8"
+                >
 
                     <div class="bg-slate-800 rounded-xl p-5">
 
@@ -212,8 +218,8 @@
 
                                 <div
                                     id="manualKey"
-                                    class="break-all bg-slate-950 border border-slate-700 rounded-lg p-3 text-xs font-mono text-cyan-300">
-                                </div>
+                                    class="break-all bg-slate-950 border border-slate-700 rounded-lg p-3 text-xs font-mono text-cyan-300"
+                                ></div>
 
                             </div>
 
@@ -224,26 +230,24 @@
                 </div>
 
 
-                <!-- AUTHENTICATOR / RECOVERY TABS -->
+                <!-- 2FA TABS -->
 
                 <div class="flex border-b border-slate-800 mb-6">
 
                     <button
                         id="authenticatorTab"
                         onclick="switch2FaMethod('authenticator')"
-                        class="flex-1 py-3 border-b-2 border-cyan-400 text-cyan-400 font-semibold">
-
+                        class="flex-1 py-3 border-b-2 border-cyan-400 text-cyan-400 font-semibold"
+                    >
                         Google OTP
-
                     </button>
 
                     <button
                         id="recoveryTab"
                         onclick="switch2FaMethod('recovery')"
-                        class="flex-1 py-3 border-b-2 border-transparent text-slate-400">
-
+                        class="flex-1 py-3 border-b-2 border-transparent text-slate-400"
+                    >
                         Recovery Code
-
                     </button>
 
                 </div>
@@ -267,21 +271,21 @@
 
                     <button
                         onclick="submitGoogleOtp()"
-                        class="w-full mt-5 bg-purple-500 hover:bg-purple-400 text-white font-bold py-3 rounded-xl">
-
-                        <i class="fa-solid fa-shield-check"></i>
-
+                        class="w-full mt-5 bg-purple-500 hover:bg-purple-400 text-white font-bold py-3 rounded-xl"
+                    >
+                        <i class="fa-solid fa-shield-halved"></i>
                         Verify OTP
-
                     </button>
 
                 </div>
 
 
-                <!-- RECOVERY CODE -->
+                <!-- RECOVERY -->
 
-                <div id="recoveryBox"
-                     class="hidden">
+                <div
+                    id="recoveryBox"
+                    class="hidden"
+                >
 
                     <label class="block text-sm text-slate-300 mb-2">
                         Emergency recovery code
@@ -295,28 +299,26 @@
 
                     <button
                         onclick="submitRecoveryCode()"
-                        class="w-full mt-5 bg-orange-500 hover:bg-orange-400 text-white font-bold py-3 rounded-xl">
-
+                        class="w-full mt-5 bg-orange-500 hover:bg-orange-400 text-white font-bold py-3 rounded-xl"
+                    >
                         <i class="fa-solid fa-key"></i>
-
                         Use Recovery Code
-
                     </button>
 
                 </div>
 
 
-                <div id="twoFactorMessage"
-                     class="hidden mt-5 p-4 rounded-xl text-sm">
-                </div>
+                <div
+                    id="twoFactorMessage"
+                    class="hidden mt-5 p-4 rounded-xl text-sm"
+                ></div>
 
 
                 <button
                     onclick="backToLogin()"
-                    class="w-full mt-5 text-slate-400 hover:text-white text-sm">
-
+                    class="w-full mt-5 text-slate-400 hover:text-white text-sm"
+                >
                     ← Back to login
-
                 </button>
 
             </div>
@@ -328,8 +330,10 @@
              DASHBOARD
         ================================================== -->
 
-        <section id="dashboardSection"
-                 class="hidden">
+        <section
+            id="dashboardSection"
+            class="hidden"
+        >
 
             <!-- DASHBOARD HEADER -->
 
@@ -345,16 +349,37 @@
                         Monitor authentication, tokens and 2FA security.
                     </p>
 
+                    <div class="text-xs text-slate-500 mt-2">
+                        <i class="fa-solid fa-rotate"></i>
+                        Auto refresh:
+                        <span id="autoRefreshStatus">30s</span>
+                        |
+                        Last refresh:
+                        <span id="lastRefreshTime">-</span>
+                    </div>
+
                 </div>
 
-                <button
-                    onclick="handleLogout()"
-                    class="bg-red-500 hover:bg-red-400 px-5 py-3 rounded-xl font-semibold">
 
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    Logout
+                <div class="flex gap-2">
 
-                </button>
+                    <button
+                        onclick="refreshSecurityDashboard()"
+                        class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-5 py-3 rounded-xl font-semibold"
+                    >
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        Refresh
+                    </button>
+
+                    <button
+                        onclick="handleLogout()"
+                        class="bg-red-500 hover:bg-red-400 px-5 py-3 rounded-xl font-semibold"
+                    >
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </button>
+
+                </div>
 
             </div>
 
@@ -366,48 +391,57 @@
                 <button
                     onclick="showDashboardTab('overview')"
                     class="dashboard-tab active-tab px-5 py-3 rounded-xl bg-cyan-500 text-slate-950 font-semibold"
-                    data-tab="overview">
-
+                    data-tab="overview"
+                >
                     <i class="fa-solid fa-chart-pie"></i>
                     Overview
-
                 </button>
+
 
                 <button
                     onclick="showDashboardTab('activity')"
                     class="dashboard-tab px-5 py-3 rounded-xl bg-slate-800 text-slate-300 font-semibold"
-                    data-tab="activity">
-
+                    data-tab="activity"
+                >
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     Security Activity
-
                 </button>
+
 
                 <button
                     onclick="showDashboardTab('tokens')"
                     class="dashboard-tab px-5 py-3 rounded-xl bg-slate-800 text-slate-300 font-semibold"
-                    data-tab="tokens">
-
+                    data-tab="tokens"
+                >
                     <i class="fa-solid fa-key"></i>
                     API Tokens
-
                 </button>
+
 
                 <button
                     onclick="showDashboardTab('settings')"
                     class="dashboard-tab px-5 py-3 rounded-xl bg-slate-800 text-slate-300 font-semibold"
-                    data-tab="settings">
-
+                    data-tab="settings"
+                >
                     <i class="fa-solid fa-gear"></i>
                     Security Settings
+                </button>
 
+
+                <button
+                    onclick="showDashboardTab('account')"
+                    class="dashboard-tab px-5 py-3 rounded-xl bg-slate-800 text-slate-300 font-semibold"
+                    data-tab="account"
+                >
+                    <i class="fa-solid fa-user-gear"></i>
+                    Account Security
                 </button>
 
             </div>
 
 
             <!-- =================================================
-                 OVERVIEW TAB
+                 OVERVIEW
             ================================================== -->
 
             <div id="overviewTab">
@@ -422,7 +456,8 @@
 
                         <div
                             id="statTotalEvents"
-                            class="text-3xl font-bold mt-2">
+                            class="text-3xl font-bold mt-2"
+                        >
                             0
                         </div>
 
@@ -437,7 +472,8 @@
 
                         <div
                             id="statSuccessful"
-                            class="text-3xl font-bold mt-2 text-green-400">
+                            class="text-3xl font-bold mt-2 text-green-400"
+                        >
                             0
                         </div>
 
@@ -452,7 +488,8 @@
 
                         <div
                             id="statFailed"
-                            class="text-3xl font-bold mt-2 text-red-400">
+                            class="text-3xl font-bold mt-2 text-red-400"
+                        >
                             0
                         </div>
 
@@ -467,7 +504,8 @@
 
                         <div
                             id="statToday"
-                            class="text-3xl font-bold mt-2 text-cyan-400">
+                            class="text-3xl font-bold mt-2 text-cyan-400"
+                        >
                             0
                         </div>
 
@@ -476,7 +514,66 @@
                 </div>
 
 
-                <!-- PROFILE -->
+                <!-- EVENT SUMMARY -->
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6">
+
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3 mb-5">
+
+                        <div>
+
+                            <h3 class="text-xl font-bold">
+                                <i class="fa-solid fa-chart-column text-purple-400"></i>
+                                Activity Summary by Event
+                            </h3>
+
+                            <p class="text-sm text-slate-400 mt-1">
+                                Authentication and security events.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+
+                        <div class="bg-slate-800 rounded-xl p-4">
+                            <div class="text-xs text-slate-400">Login</div>
+                            <div id="summaryLogin" class="text-2xl font-bold mt-1">0</div>
+                        </div>
+
+                        <div class="bg-slate-800 rounded-xl p-4">
+                            <div class="text-xs text-slate-400">OTP</div>
+                            <div id="summaryOtp" class="text-2xl font-bold mt-1">0</div>
+                        </div>
+
+                        <div class="bg-slate-800 rounded-xl p-4">
+                            <div class="text-xs text-slate-400">Recovery</div>
+                            <div id="summaryRecovery" class="text-2xl font-bold mt-1">0</div>
+                        </div>
+
+                        <div class="bg-slate-800 rounded-xl p-4">
+                            <div class="text-xs text-slate-400">Logout</div>
+                            <div id="summaryLogout" class="text-2xl font-bold mt-1">0</div>
+                        </div>
+
+                        <div class="bg-slate-800 rounded-xl p-4">
+                            <div class="text-xs text-slate-400">Token</div>
+                            <div id="summaryToken" class="text-2xl font-bold mt-1">0</div>
+                        </div>
+
+                        <div class="bg-slate-800 rounded-xl p-4">
+                            <div class="text-xs text-slate-400">2FA</div>
+                            <div id="summaryTwoFa" class="text-2xl font-bold mt-1">0</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACCOUNT -->
 
                 <div class="grid lg:grid-cols-2 gap-6">
 
@@ -494,20 +591,24 @@
                                     Name
                                 </div>
 
-                                <div id="profileName"
-                                     class="font-semibold">
-                                </div>
+                                <div
+                                    id="profileName"
+                                    class="font-semibold"
+                                ></div>
                             </div>
+
 
                             <div>
                                 <div class="text-xs text-slate-500">
                                     Email
                                 </div>
 
-                                <div id="profileEmail"
-                                     class="font-semibold">
-                                </div>
+                                <div
+                                    id="profileEmail"
+                                    class="font-semibold"
+                                ></div>
                             </div>
+
 
                             <div>
                                 <div class="text-xs text-slate-500">
@@ -516,9 +617,10 @@
 
                                 <span
                                     id="profile2FA"
-                                    class="inline-flex mt-1 px-3 py-1 rounded-full text-xs font-semibold">
-                                </span>
+                                    class="inline-flex mt-1 px-3 py-1 rounded-full text-xs font-semibold"
+                                ></span>
                             </div>
+
 
                             <div>
                                 <div class="text-xs text-slate-500">
@@ -527,8 +629,8 @@
 
                                 <div
                                     id="profileRecoveryCount"
-                                    class="font-semibold text-orange-400">
-                                </div>
+                                    class="font-semibold text-orange-400"
+                                ></div>
                             </div>
 
                         </div>
@@ -555,6 +657,7 @@
                                 </strong>
                             </div>
 
+
                             <div class="flex justify-between border-b border-slate-800 pb-3">
                                 <span class="text-slate-400">
                                     Recovery Logins
@@ -565,6 +668,7 @@
                                 </strong>
                             </div>
 
+
                             <div class="flex justify-between">
                                 <span class="text-slate-400">
                                     Successful Events
@@ -572,7 +676,8 @@
 
                                 <strong
                                     id="statSuccessEvents"
-                                    class="text-green-400">
+                                    class="text-green-400"
+                                >
                                     0
                                 </strong>
                             </div>
@@ -587,11 +692,13 @@
 
 
             <!-- =================================================
-                 SECURITY ACTIVITY TAB
+                 ACTIVITY
             ================================================== -->
 
-            <div id="activityTab"
-                 class="hidden">
+            <div
+                id="activityTab"
+                class="hidden"
+            >
 
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
 
@@ -609,14 +716,27 @@
 
                         </div>
 
-                        <button
-                            onclick="loadActivities()"
-                            class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-4 py-2 rounded-lg font-semibold">
 
-                            <i class="fa-solid fa-refresh"></i>
-                            Refresh
+                        <div class="flex flex-wrap gap-2">
 
-                        </button>
+                            <button
+                                onclick="exportSecurityActivity()"
+                                class="bg-green-500 hover:bg-green-400 text-slate-950 px-4 py-2 rounded-lg font-semibold"
+                            >
+                                <i class="fa-solid fa-file-csv"></i>
+                                Export CSV
+                            </button>
+
+
+                            <button
+                                onclick="loadActivities(currentActivityPage)"
+                                class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-4 py-2 rounded-lg font-semibold"
+                            >
+                                <i class="fa-solid fa-refresh"></i>
+                                Refresh
+                            </button>
+
+                        </div>
 
                     </div>
 
@@ -627,14 +747,17 @@
 
                         <input
                             id="activitySearch"
-                            oninput="loadActivities()"
+                            oninput="debouncedActivitySearch()"
                             class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2"
-                            placeholder="Search...">
+                            placeholder="Search..."
+                        >
+
 
                         <select
                             id="activityEvent"
-                            onchange="loadActivities()"
-                            class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2">
+                            onchange="loadActivities(1)"
+                            class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2"
+                        >
 
                             <option value="">
                                 All Events
@@ -654,6 +777,18 @@
 
                             <option value="logout">
                                 Logout
+                            </option>
+
+                            <option value="logout_all_devices">
+                                Logout All Devices
+                            </option>
+
+                            <option value="password_changed">
+                                Password Changed
+                            </option>
+
+                            <option value="profile_updated">
+                                Profile Updated
                             </option>
 
                             <option value="api_token_created">
@@ -685,8 +820,9 @@
 
                         <select
                             id="activityStatus"
-                            onchange="loadActivities()"
-                            class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2">
+                            onchange="loadActivities(1)"
+                            class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2"
+                        >
 
                             <option value="">
                                 All Status
@@ -705,9 +841,10 @@
 
                         <input
                             id="activityDate"
-                            onchange="loadActivities()"
+                            onchange="loadActivities(1)"
                             type="date"
-                            class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2">
+                            class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2"
+                        >
 
                     </div>
 
@@ -744,13 +881,19 @@
 
                             </thead>
 
-                            <tbody id="activityTable">
-
-                            </tbody>
+                            <tbody id="activityTable"></tbody>
 
                         </table>
 
                     </div>
+
+
+                    <!-- PAGINATION -->
+
+                    <div
+                        id="activityPagination"
+                        class="flex flex-wrap items-center justify-center gap-2 mt-6"
+                    ></div>
 
                 </div>
 
@@ -758,11 +901,13 @@
 
 
             <!-- =================================================
-                 TOKEN TAB
+                 TOKENS
             ================================================== -->
 
-            <div id="tokensTab"
-                 class="hidden">
+            <div
+                id="tokensTab"
+                class="hidden"
+            >
 
                 <div class="grid lg:grid-cols-3 gap-6">
 
@@ -772,45 +917,53 @@
                     <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
 
                         <h3 class="text-xl font-bold mb-2">
+
                             <i class="fa-solid fa-plus text-green-400"></i>
+
                             Create API Token
+
                         </h3>
 
                         <p class="text-sm text-slate-400 mb-5">
                             Create a named Sanctum token for API access.
                         </p>
 
+
                         <input
                             id="newTokenName"
                             class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3"
-                            placeholder="e.g. Mobile App">
+                            placeholder="e.g. Mobile App"
+                        >
+
 
                         <button
                             onclick="createApiToken()"
-                            class="w-full mt-4 bg-green-500 hover:bg-green-400 text-slate-950 font-bold py-3 rounded-lg">
-
+                            class="w-full mt-4 bg-green-500 hover:bg-green-400 text-slate-950 font-bold py-3 rounded-lg"
+                        >
                             Create Token
-
                         </button>
 
-                        <div id="newTokenResult"
-                             class="hidden mt-5">
+
+                        <div
+                            id="newTokenResult"
+                            class="hidden mt-5"
+                        >
 
                             <div class="text-xs text-slate-400 mb-2">
                                 New token — copy it now:
                             </div>
 
-                            <div class="bg-slate-950 border border-slate-700 rounded-lg p-3 break-all font-mono text-xs text-green-300"
-                                 id="newTokenValue">
-                            </div>
+                            <div
+                                id="newTokenValue"
+                                class="bg-slate-950 border border-slate-700 rounded-lg p-3 break-all font-mono text-xs text-green-300"
+                            ></div>
 
                             <button
                                 onclick="copyText(document.getElementById('newTokenValue').innerText)"
-                                class="mt-3 text-sm text-cyan-400">
-
+                                class="mt-3 text-sm text-cyan-400"
+                            >
                                 <i class="fa-solid fa-copy"></i>
                                 Copy Token
-
                             </button>
 
                         </div>
@@ -836,13 +989,33 @@
 
                             </div>
 
+
                             <button
                                 onclick="revokeOtherTokens()"
-                                class="bg-red-500/20 text-red-300 border border-red-500/30 px-4 py-2 rounded-lg">
-
+                                class="bg-red-500/20 text-red-300 border border-red-500/30 px-4 py-2 rounded-lg"
+                            >
                                 Revoke Other Tokens
-
                             </button>
+
+                        </div>
+
+
+                        <!-- TOKEN SEARCH -->
+
+                        <div class="mb-5">
+
+                            <div class="relative">
+
+                                <i class="fa-solid fa-search absolute left-3 top-3 text-slate-500"></i>
+
+                                <input
+                                    id="tokenSearch"
+                                    oninput="filterTokens()"
+                                    class="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-3"
+                                    placeholder="Search API token by name..."
+                                >
+
+                            </div>
 
                         </div>
 
@@ -879,9 +1052,7 @@
 
                                 </thead>
 
-                                <tbody id="tokenTable">
-
-                                </tbody>
+                                <tbody id="tokenTable"></tbody>
 
                             </table>
 
@@ -895,11 +1066,13 @@
 
 
             <!-- =================================================
-                 SECURITY SETTINGS
+                 SETTINGS
             ================================================== -->
 
-            <div id="settingsTab"
-                 class="hidden">
+            <div
+                id="settingsTab"
+                class="hidden"
+            >
 
                 <div class="grid lg:grid-cols-2 gap-6">
 
@@ -909,9 +1082,13 @@
                     <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
 
                         <h3 class="text-xl font-bold mb-5">
+
                             <i class="fa-solid fa-shield-halved text-cyan-400"></i>
+
                             Two-Factor Security
+
                         </h3>
+
 
                         <div class="bg-slate-800 rounded-xl p-5 mb-5">
 
@@ -921,8 +1098,8 @@
 
                             <div
                                 id="settings2FAStatus"
-                                class="text-xl font-bold mt-1">
-                            </div>
+                                class="text-xl font-bold mt-1"
+                            ></div>
 
                         </div>
 
@@ -932,14 +1109,17 @@
                         </h4>
 
                         <p class="text-sm text-slate-400 mb-4">
-                            Generate a fresh set of eight emergency recovery codes.
+                            Generate a fresh set of emergency recovery codes.
                         </p>
+
 
                         <button
                             onclick="regenerateBackupCodes()"
-                            class="w-full bg-orange-500 hover:bg-orange-400 py-3 rounded-lg font-semibold">
+                            class="w-full bg-orange-500 hover:bg-orange-400 py-3 rounded-lg font-semibold"
+                        >
 
                             <i class="fa-solid fa-rotate"></i>
+
                             Regenerate Recovery Codes
 
                         </button>
@@ -956,21 +1136,27 @@
                             Password and current OTP are required before generating a new authenticator.
                         </p>
 
+
                         <input
                             id="changeAuthPassword"
                             type="password"
                             class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-3"
-                            placeholder="Current password">
+                            placeholder="Current password"
+                        >
+
 
                         <input
                             id="changeAuthOtp"
                             maxlength="6"
                             class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-3"
-                            placeholder="Current Google OTP">
+                            placeholder="Current Google OTP"
+                        >
+
 
                         <button
                             onclick="startAuthenticatorChange()"
-                            class="w-full bg-purple-500 hover:bg-purple-400 py-3 rounded-lg font-semibold">
+                            class="w-full bg-purple-500 hover:bg-purple-400 py-3 rounded-lg font-semibold"
+                        >
 
                             Generate New Authenticator
 
@@ -984,12 +1170,149 @@
                     <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
 
                         <h3 class="text-xl font-bold mb-2 text-red-300">
+
                             <i class="fa-solid fa-triangle-exclamation"></i>
+
                             Disable Two-Factor Authentication
+
+                        </h3>
+
+
+                        <p class="text-sm text-slate-400 mb-6">
+                            This is a sensitive security operation.
+                        </p>
+
+
+                        <label class="block text-sm text-slate-400 mb-2">
+                            Current Password
+                        </label>
+
+
+                        <input
+                            id="disablePassword"
+                            type="password"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-4"
+                            placeholder="Current password"
+                        >
+
+
+                        <label class="block text-sm text-slate-400 mb-2">
+                            Google Authenticator OTP
+                        </label>
+
+
+                        <input
+                            id="disableOtp"
+                            maxlength="6"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-5"
+                            placeholder="6-digit OTP"
+                        >
+
+
+                        <button
+                            onclick="disableTwoFactor()"
+                            class="w-full bg-red-500 hover:bg-red-400 py-3 rounded-lg font-bold"
+                        >
+                            Disable 2FA
+                        </button>
+
+
+                        <div
+                            id="settingsMessage"
+                            class="hidden mt-5 p-4 rounded-lg text-sm"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACCOUNT SECURITY
+            ================================================== -->
+
+            <div
+                id="accountTab"
+                class="hidden"
+            >
+
+                <div class="grid lg:grid-cols-2 gap-6">
+
+
+                    <!-- UPDATE PROFILE -->
+
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                        <h3 class="text-xl font-bold mb-2">
+
+                            <i class="fa-solid fa-user-pen text-cyan-400"></i>
+
+                            Update Profile
+
                         </h3>
 
                         <p class="text-sm text-slate-400 mb-6">
-                            This is a sensitive security operation. Your current password and Google OTP are required.
+                            Update your account name and email address.
+                        </p>
+
+
+                        <label class="block text-sm text-slate-400 mb-2">
+                            Name
+                        </label>
+
+                        <input
+                            id="updateName"
+                            type="text"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-4"
+                            placeholder="Your name"
+                        >
+
+
+                        <label class="block text-sm text-slate-400 mb-2">
+                            Email
+                        </label>
+
+                        <input
+                            id="updateEmail"
+                            type="email"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-5"
+                            placeholder="your@email.com"
+                        >
+
+
+                        <button
+                            onclick="updateProfile()"
+                            class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 rounded-lg"
+                        >
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Update Profile
+                        </button>
+
+
+                        <div
+                            id="profileUpdateMessage"
+                            class="hidden mt-5 p-4 rounded-lg text-sm"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- CHANGE PASSWORD -->
+
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                        <h3 class="text-xl font-bold mb-2">
+
+                            <i class="fa-solid fa-lock text-orange-400"></i>
+
+                            Change Password
+
+                        </h3>
+
+                        <p class="text-sm text-slate-400 mb-6">
+                            Verify your current password before changing it.
                         </p>
 
 
@@ -998,34 +1321,263 @@
                         </label>
 
                         <input
-                            id="disablePassword"
+                            id="currentPassword"
                             type="password"
                             class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-4"
-                            placeholder="Current password">
+                            placeholder="Current password"
+                        >
 
 
                         <label class="block text-sm text-slate-400 mb-2">
-                            Google Authenticator OTP
+                            New Password
                         </label>
 
                         <input
-                            id="disableOtp"
-                            maxlength="6"
+                            id="newPassword"
+                            type="password"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-4"
+                            placeholder="New password"
+                        >
+
+
+                        <label class="block text-sm text-slate-400 mb-2">
+                            Confirm New Password
+                        </label>
+
+                        <input
+                            id="confirmPassword"
+                            type="password"
                             class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-5"
-                            placeholder="6-digit OTP">
+                            placeholder="Confirm new password"
+                        >
 
 
                         <button
-                            onclick="disableTwoFactor()"
-                            class="w-full bg-red-500 hover:bg-red-400 py-3 rounded-lg font-bold">
-
-                            Disable 2FA
-
+                            onclick="changePassword()"
+                            class="w-full bg-orange-500 hover:bg-orange-400 py-3 rounded-lg font-bold"
+                        >
+                            <i class="fa-solid fa-key"></i>
+                            Change Password
                         </button>
 
 
-                        <div id="settingsMessage"
-                             class="hidden mt-5 p-4 rounded-lg text-sm">
+                        <div
+                            id="passwordMessage"
+                            class="hidden mt-5 p-4 rounded-lg text-sm"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- CURRENT SESSION -->
+
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                        <h3 class="text-xl font-bold mb-2">
+
+                            <i class="fa-solid fa-desktop text-green-400"></i>
+
+                            Current Session Information
+
+                        </h3>
+
+                        <p class="text-sm text-slate-400 mb-6">
+                            Information about your current authenticated session.
+                        </p>
+
+
+                        <div class="space-y-4">
+
+                            <div class="flex justify-between gap-4 border-b border-slate-800 pb-3">
+
+                                <span class="text-slate-400">
+                                    Token
+                                </span>
+
+                                <span
+                                    id="sessionToken"
+                                    class="font-mono text-xs text-cyan-300 text-right break-all"
+                                >
+                                    -
+                                </span>
+
+                            </div>
+
+
+                            <div class="flex justify-between gap-4 border-b border-slate-800 pb-3">
+
+                                <span class="text-slate-400">
+                                    IP Address
+                                </span>
+
+                                <span
+                                    id="sessionIp"
+                                    class="font-mono text-sm"
+                                >
+                                    -
+                                </span>
+
+                            </div>
+
+
+                            <div class="flex justify-between gap-4 border-b border-slate-800 pb-3">
+
+                                <span class="text-slate-400">
+                                    Browser
+                                </span>
+
+                                <span
+                                    id="sessionBrowser"
+                                    class="text-sm text-right"
+                                >
+                                    -
+                                </span>
+
+                            </div>
+
+
+                            <div class="flex justify-between gap-4">
+
+                                <span class="text-slate-400">
+                                    Device
+                                </span>
+
+                                <span
+                                    id="sessionDevice"
+                                    class="text-sm text-right"
+                                >
+                                    -
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            onclick="loadSessionInformation()"
+                            class="w-full mt-6 bg-slate-800 hover:bg-slate-700 py-3 rounded-lg font-semibold"
+                        >
+                            <i class="fa-solid fa-refresh"></i>
+                            Refresh Session
+                        </button>
+
+                    </div>
+
+
+                    <!-- LOGOUT ALL DEVICES -->
+
+                    <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+
+                        <h3 class="text-xl font-bold mb-2 text-red-300">
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                            Logout From All Devices
+
+                        </h3>
+
+                        <p class="text-sm text-slate-400 mb-6">
+                            Revoke all Sanctum API tokens associated with your account.
+                        </p>
+
+
+                        <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-5">
+
+                            <div class="text-sm text-red-300">
+
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                                This will invalidate authenticated sessions on other devices.
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            onclick="logoutAllDevices()"
+                            class="w-full bg-red-500 hover:bg-red-400 py-3 rounded-lg font-bold"
+                        >
+                            <i class="fa-solid fa-power-off"></i>
+                            Logout From All Devices
+                        </button>
+
+
+                        <div
+                            id="logoutAllMessage"
+                            class="hidden mt-5 p-4 rounded-lg text-sm"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- PASSWORD SECURITY LOG -->
+
+                    <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">
+
+                            <div>
+
+                                <h3 class="text-xl font-bold">
+
+                                    <i class="fa-solid fa-shield text-purple-400"></i>
+
+                                    Password Change Security Log
+
+                                </h3>
+
+                                <p class="text-sm text-slate-400">
+                                    Recent password and account-security changes.
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                onclick="loadActivities(1, 'password')"
+                                class="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg"
+                            >
+                                <i class="fa-solid fa-refresh"></i>
+                                Refresh Log
+                            </button>
+
+                        </div>
+
+
+                        <div class="overflow-x-auto">
+
+                            <table class="w-full text-sm">
+
+                                <thead>
+
+                                <tr class="border-b border-slate-800 text-left text-slate-400">
+
+                                    <th class="p-3">
+                                        Event
+                                    </th>
+
+                                    <th class="p-3">
+                                        Status
+                                    </th>
+
+                                    <th class="p-3">
+                                        IP
+                                    </th>
+
+                                    <th class="p-3">
+                                        Date
+                                    </th>
+
+                                </tr>
+
+                                </thead>
+
+                                <tbody id="passwordSecurityLog"></tbody>
+
+                            </table>
+
                         </div>
 
                     </div>
@@ -1057,52 +1609,79 @@ let currentToken = null;
 
 let currentRecoveryCodes = [];
 
+let currentActivityPage = 1;
+
+let activitySearchTimer = null;
+
+let autoRefreshTimer = null;
+
+let allTokens = [];
+
 const csrfToken = document
     .querySelector('meta[name="csrf-token"]')
     .getAttribute('content');
 
 
-/*
-|--------------------------------------------------------------------------
-| API HELPER
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   API HELPER
+========================================================= */
 
 async function apiFetch(url, options = {}) {
 
     options.headers = {
+
         'Content-Type': 'application/json',
+
         'Accept': 'application/json',
+
         'Authorization': currentToken
             ? `Bearer ${currentToken}`
             : '',
+
         'X-CSRF-TOKEN': csrfToken,
+
         ...(options.headers || {})
+
     };
+
 
     const response = await fetch(url, options);
 
-    const data = await response.json().catch(() => ({
-        success: false,
-        message: 'Invalid server response.'
-    }));
+
+    const data = await response
+        .json()
+        .catch(() => ({
+            success: false,
+            message: 'Invalid server response.'
+        }));
+
 
     return {
         response,
         data
     };
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| MESSAGE
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   MESSAGE
+========================================================= */
 
-function showMessage(elementId, message, type = 'error') {
+function showMessage(
+    elementId,
+    message,
+    type = 'error'
+) {
 
-    const element = document.getElementById(elementId);
+    const element =
+        document.getElementById(elementId);
+
+
+    if (!element) {
+        return;
+    }
+
 
     element.classList.remove(
         'hidden',
@@ -1113,6 +1692,7 @@ function showMessage(elementId, message, type = 'error') {
         'border-green-500/30',
         'text-green-300'
     );
+
 
     if (type === 'success') {
 
@@ -1134,40 +1714,54 @@ function showMessage(elementId, message, type = 'error') {
 
     }
 
+
     element.innerText = message;
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| LOGIN
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   LOGIN
+========================================================= */
 
 document
     .getElementById('loginForm')
-    .addEventListener('submit', handleLoginSubmit);
+    .addEventListener(
+        'submit',
+        handleLoginSubmit
+    );
 
 
 async function handleLoginSubmit(event) {
 
     event.preventDefault();
 
-    const email = document
-        .getElementById('loginEmail')
-        .value;
 
-    const password = document
-        .getElementById('loginPassword')
-        .value;
+    const email =
+        document
+            .getElementById('loginEmail')
+            .value;
 
-    const { response, data } = await apiFetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify({
-            email,
-            password
-        })
-    });
+
+    const password =
+        document
+            .getElementById('loginPassword')
+            .value;
+
+
+    const { response, data } =
+        await apiFetch(
+            '/api/login',
+            {
+                method: 'POST',
+
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }
+        );
+
 
     if (!response.ok || !data.success) {
 
@@ -1179,81 +1773,96 @@ async function handleLoginSubmit(event) {
         return;
     }
 
+
     currentUserId = data.user_id;
+
     currentUserEmail = data.user_email;
+
     currentUserName = data.user_name;
 
-    currentSecretKey = data.manual_key || null;
-    currentQrUrl = data.qr_code || null;
+    currentSecretKey =
+        data.manual_key || null;
+
+    currentQrUrl =
+        data.qr_code || null;
+
 
     document
         .getElementById('loginSection')
         .classList.add('hidden');
 
+
     document
         .getElementById('twoFactorSection')
         .classList.remove('hidden');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Initial 2FA setup
-    |--------------------------------------------------------------------------
-    */
 
-    if (!data.google_2fa_enabled && data.qr_code) {
+    if (
+        !data.google_2fa_enabled &&
+        data.qr_code
+    ) {
 
         document
             .getElementById('setupBox')
             .classList.remove('hidden');
 
+
         renderQrCode(data.qr_code);
+
 
         document
             .getElementById('manualKey')
-            .innerText = data.manual_key || '';
+            .innerText =
+            data.manual_key || '';
 
     } else {
 
         document
             .getElementById('setupBox')
             .classList.add('hidden');
+
     }
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| QR CODE
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   QR
+========================================================= */
 
 function renderQrCode(url) {
 
-    const container = document
-        .getElementById('qrCode');
+    const container =
+        document.getElementById('qrCode');
+
 
     container.innerHTML = '';
 
-    new QRCode(container, {
-        text: url,
-        width: 200,
-        height: 200
-    });
+
+    new QRCode(
+        container,
+        {
+            text: url,
+            width: 200,
+            height: 200
+        }
+    );
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| GOOGLE OTP
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   GOOGLE OTP
+========================================================= */
 
 async function submitGoogleOtp() {
 
-    const otp = document
-        .getElementById('otpInput')
-        .value
-        .trim();
+    const otp =
+        document
+            .getElementById('otpInput')
+            .value
+            .trim();
+
 
     if (!/^\d{6}$/.test(otp)) {
 
@@ -1265,16 +1874,20 @@ async function submitGoogleOtp() {
         return;
     }
 
-    const { response, data } = await apiFetch(
-        '/api/verify-google-otp',
-        {
-            method: 'POST',
-            body: JSON.stringify({
-                user_id: currentUserId,
-                otp
-            })
-        }
-    );
+
+    const { response, data } =
+        await apiFetch(
+            '/api/verify-google-otp',
+            {
+                method: 'POST',
+
+                body: JSON.stringify({
+                    user_id: currentUserId,
+                    otp
+                })
+            }
+        );
+
 
     if (!response.ok || !data.success) {
 
@@ -1286,22 +1899,24 @@ async function submitGoogleOtp() {
         return;
     }
 
+
     onAuthSuccess(data);
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| RECOVERY CODE
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   RECOVERY CODE
+========================================================= */
 
 async function submitRecoveryCode() {
 
-    const recoveryCode = document
-        .getElementById('recoveryInput')
-        .value
-        .trim();
+    const recoveryCode =
+        document
+            .getElementById('recoveryInput')
+            .value
+            .trim();
+
 
     if (!recoveryCode) {
 
@@ -1313,16 +1928,20 @@ async function submitRecoveryCode() {
         return;
     }
 
-    const { response, data } = await apiFetch(
-        '/api/verify-recovery-code',
-        {
-            method: 'POST',
-            body: JSON.stringify({
-                user_id: currentUserId,
-                recovery_code: recoveryCode
-            })
-        }
-    );
+
+    const { response, data } =
+        await apiFetch(
+            '/api/verify-recovery-code',
+            {
+                method: 'POST',
+
+                body: JSON.stringify({
+                    user_id: currentUserId,
+                    recovery_code: recoveryCode
+                })
+            }
+        );
+
 
     if (!response.ok || !data.success) {
 
@@ -1334,53 +1953,62 @@ async function submitRecoveryCode() {
         return;
     }
 
+
     onAuthSuccess(data);
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| AUTH SUCCESS
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   AUTH SUCCESS
+========================================================= */
 
 function onAuthSuccess(data) {
 
     currentToken = data.token;
 
+
     currentRecoveryCodes =
         data.user?.recovery_codes || [];
+
 
     document
         .getElementById('twoFactorSection')
         .classList.add('hidden');
 
+
     document
         .getElementById('dashboardSection')
         .classList.remove('hidden');
+
 
     document
         .getElementById('headerUser')
         .classList.remove('hidden');
 
+
     document
         .getElementById('headerUserName')
-        .innerText = currentUserName;
+        .innerText =
+        currentUserName;
+
 
     document
         .getElementById('headerUserEmail')
-        .innerText = currentUserEmail;
+        .innerText =
+        currentUserEmail;
+
 
     loadDashboard();
+
+    startAutoRefresh();
 
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| DASHBOARD
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
 async function loadDashboard() {
 
@@ -1388,43 +2016,159 @@ async function loadDashboard() {
 
     await loadStatistics();
 
-    await loadActivities();
+    await loadActivitySummary();
+
+    await loadActivities(1);
 
     await loadTokens();
+
+    await loadSessionInformation();
+
+    await loadPasswordSecurityLog();
+
+    updateLastRefreshTime();
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| PROFILE
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   REFRESH DASHBOARD
+========================================================= */
+
+async function refreshSecurityDashboard() {
+
+    if (!currentToken) {
+        return;
+    }
+
+
+    await loadDashboard();
+
+}
+
+
+/* =========================================================
+   AUTO REFRESH
+========================================================= */
+
+function startAutoRefresh() {
+
+    stopAutoRefresh();
+
+
+    autoRefreshTimer =
+        setInterval(
+            async function () {
+
+                if (!currentToken) {
+                    return;
+                }
+
+
+                await loadStatistics();
+
+                await loadActivitySummary();
+
+                await loadActivities(
+                    currentActivityPage
+                );
+
+                await loadTokens();
+
+                await loadSessionInformation();
+
+                updateLastRefreshTime();
+
+            },
+            30000
+        );
+
+}
+
+
+function stopAutoRefresh() {
+
+    if (autoRefreshTimer) {
+
+        clearInterval(autoRefreshTimer);
+
+        autoRefreshTimer = null;
+
+    }
+
+}
+
+
+function updateLastRefreshTime() {
+
+    const element =
+        document.getElementById(
+            'lastRefreshTime'
+        );
+
+
+    if (!element) {
+        return;
+    }
+
+
+    element.innerText =
+        new Date().toLocaleTimeString();
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
 
 async function loadProfile() {
 
-    const { data } = await apiFetch('/api/profile');
+    const { data } =
+        await apiFetch('/api/profile');
+
 
     if (!data.success) {
         return;
     }
 
+
     const user = data.user;
+
 
     document
         .getElementById('profileName')
-        .innerText = user.name;
+        .innerText =
+        user.name || '-';
+
 
     document
         .getElementById('profileEmail')
-        .innerText = user.email;
+        .innerText =
+        user.email || '-';
+
+
+    document
+        .getElementById('updateName')
+        .value =
+        user.name || '';
+
+
+    document
+        .getElementById('updateEmail')
+        .value =
+        user.email || '';
+
 
     document
         .getElementById('profileRecoveryCount')
         .innerText =
-        user.recovery_stats.remaining;
+        user.recovery_stats?.remaining ?? 0;
 
-    const status = document
-        .getElementById('profile2FA');
+
+    const status =
+        document.getElementById('profile2FA');
+
 
     if (user.google_2fa_enabled) {
 
@@ -1433,9 +2177,11 @@ async function loadProfile() {
         status.className =
             'inline-flex mt-1 px-3 py-1 rounded-full text-xs font-semibold bg-green-500/10 text-green-300';
 
+
         document
             .getElementById('settings2FAStatus')
-            .innerText = 'Enabled';
+            .innerText =
+            'Enabled';
 
     } else {
 
@@ -1444,208 +2190,1023 @@ async function loadProfile() {
         status.className =
             'inline-flex mt-1 px-3 py-1 rounded-full text-xs font-semibold bg-red-500/10 text-red-300';
 
+
         document
             .getElementById('settings2FAStatus')
-            .innerText = 'Disabled';
+            .innerText =
+            'Disabled';
+
     }
+
+
+    currentUserName =
+        user.name || currentUserName;
+
+
+    currentUserEmail =
+        user.email || currentUserEmail;
+
+
+    document
+        .getElementById('headerUserName')
+        .innerText =
+        currentUserName;
+
+
+    document
+        .getElementById('headerUserEmail')
+        .innerText =
+        currentUserEmail;
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| STATISTICS
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   UPDATE PROFILE
+========================================================= */
 
-async function loadStatistics() {
+async function updateProfile() {
 
-    const { data } = await apiFetch(
-        '/api/security/statistics'
-    );
+    const name =
+        document
+            .getElementById('updateName')
+            .value
+            .trim();
 
-    if (!data.success) {
+
+    const email =
+        document
+            .getElementById('updateEmail')
+            .value
+            .trim();
+
+
+    if (!name || !email) {
+
+        showMessage(
+            'profileUpdateMessage',
+            'Name and email are required.'
+        );
+
         return;
     }
 
-    const stats = data.statistics;
 
-    document
-        .getElementById('statTotalEvents')
-        .innerText = stats.total_events;
+    const { response, data } =
+        await apiFetch(
+            '/api/profile/update',
+            {
+                method: 'PUT',
 
-    document
-        .getElementById('statSuccessful')
-        .innerText = stats.successful_logins;
+                body: JSON.stringify({
+                    name,
+                    email
+                })
+            }
+        );
 
-    document
-        .getElementById('statFailed')
-        .innerText = stats.failed_logins;
 
-    document
-        .getElementById('statToday')
-        .innerText = stats.today_events;
+    if (!response.ok || !data.success) {
 
-    document
-        .getElementById('statOtp')
-        .innerText = stats.otp_verifications;
+        showMessage(
+            'profileUpdateMessage',
+            data.message ||
+            'Profile update failed.'
+        );
 
-    document
-        .getElementById('statRecovery')
-        .innerText = stats.recovery_code_logins;
+        return;
+    }
 
-    document
-        .getElementById('statSuccessEvents')
-        .innerText = stats.successful_events;
+
+    showMessage(
+        'profileUpdateMessage',
+        data.message ||
+        'Profile updated successfully.',
+        'success'
+    );
+
+
+    await loadProfile();
+
+    await loadActivities(1);
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| ACTIVITIES
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   CHANGE PASSWORD
+========================================================= */
 
-async function loadActivities() {
+async function changePassword() {
+
+    const currentPassword =
+        document
+            .getElementById('currentPassword')
+            .value;
+
+
+    const newPassword =
+        document
+            .getElementById('newPassword')
+            .value;
+
+
+    const confirmPassword =
+        document
+            .getElementById('confirmPassword')
+            .value;
+
+
+    if (
+        !currentPassword ||
+        !newPassword ||
+        !confirmPassword
+    ) {
+
+        showMessage(
+            'passwordMessage',
+            'All password fields are required.'
+        );
+
+        return;
+    }
+
+
+    if (newPassword !== confirmPassword) {
+
+        showMessage(
+            'passwordMessage',
+            'New password and confirmation do not match.'
+        );
+
+        return;
+    }
+
+
+    const { response, data } =
+        await apiFetch(
+            '/api/security/change-password',
+            {
+                method: 'POST',
+
+                body: JSON.stringify({
+                    current_password: currentPassword,
+                    new_password: newPassword,
+                    new_password_confirmation:
+                        confirmPassword
+                })
+            }
+        );
+
+
+    if (!response.ok || !data.success) {
+
+        showMessage(
+            'passwordMessage',
+            data.message ||
+            'Password change failed.'
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        'passwordMessage',
+        data.message ||
+        'Password changed successfully.',
+        'success'
+    );
+
+
+    document
+        .getElementById('currentPassword')
+        .value = '';
+
+
+    document
+        .getElementById('newPassword')
+        .value = '';
+
+
+    document
+        .getElementById('confirmPassword')
+        .value = '';
+
+
+    await loadActivities(1);
+
+    await loadPasswordSecurityLog();
+
+}
+
+
+/* =========================================================
+   PASSWORD SECURITY LOG
+========================================================= */
+
+async function loadPasswordSecurityLog() {
 
     if (!currentToken) {
         return;
     }
 
-    const search = document
-        .getElementById('activitySearch')
-        .value;
 
-    const event = document
-        .getElementById('activityEvent')
-        .value;
+    const params =
+        new URLSearchParams();
 
-    const status = document
-        .getElementById('activityStatus')
-        .value;
 
-    const date = document
-        .getElementById('activityDate')
-        .value;
+    params.append(
+        'search',
+        'password'
+    );
 
-    const params = new URLSearchParams();
+
+    params.append(
+        'per_page',
+        '10'
+    );
+
+
+    const { data } =
+        await apiFetch(
+            `/api/security/activities?${params.toString()}`
+        );
+
+
+    const tbody =
+        document.getElementById(
+            'passwordSecurityLog'
+        );
+
+
+    if (!tbody) {
+        return;
+    }
+
+
+    tbody.innerHTML = '';
+
+
+    if (
+        !data.success ||
+        !data.activities?.data?.length
+    ) {
+
+        tbody.innerHTML = `
+            <tr>
+                <td
+                    colspan="4"
+                    class="p-6 text-center text-slate-500"
+                >
+                    No password security events found.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    data.activities.data
+        .filter(activity =>
+            [
+                'password_changed',
+                'profile_updated',
+                'logout_all_devices'
+            ].includes(activity.event)
+        )
+        .forEach(activity => {
+
+            const statusClass =
+                activity.status === 'success'
+                    ? 'bg-green-500/10 text-green-300'
+                    : 'bg-red-500/10 text-red-300';
+
+
+            tbody.innerHTML += `
+                <tr class="border-b border-slate-800">
+
+                    <td class="p-3 font-medium">
+                        ${escapeHtml(
+                            formatEvent(activity.event)
+                        )}
+                    </td>
+
+                    <td class="p-3">
+                        <span
+                            class="px-2 py-1 rounded-full text-xs ${statusClass}"
+                        >
+                            ${escapeHtml(
+                                activity.status || '-'
+                            )}
+                        </span>
+                    </td>
+
+                    <td class="p-3 font-mono text-xs text-slate-400">
+                        ${escapeHtml(
+                            activity.ip_address || '-'
+                        )}
+                    </td>
+
+                    <td class="p-3 text-slate-400 whitespace-nowrap">
+                        ${escapeHtml(
+                            activity.created_at || '-'
+                        )}
+                    </td>
+
+                </tr>
+            `;
+
+        });
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+async function loadStatistics() {
+
+    const { data } =
+        await apiFetch(
+            '/api/security/statistics'
+        );
+
+
+    if (!data.success) {
+        return;
+    }
+
+
+    const stats =
+        data.statistics;
+
+
+    document
+        .getElementById('statTotalEvents')
+        .innerText =
+        stats.total_events ?? 0;
+
+
+    document
+        .getElementById('statSuccessful')
+        .innerText =
+        stats.successful_logins ?? 0;
+
+
+    document
+        .getElementById('statFailed')
+        .innerText =
+        stats.failed_logins ?? 0;
+
+
+    document
+        .getElementById('statToday')
+        .innerText =
+        stats.today_events ?? 0;
+
+
+    document
+        .getElementById('statOtp')
+        .innerText =
+        stats.otp_verifications ?? 0;
+
+
+    document
+        .getElementById('statRecovery')
+        .innerText =
+        stats.recovery_code_logins ?? 0;
+
+
+    document
+        .getElementById('statSuccessEvents')
+        .innerText =
+        stats.successful_events ?? 0;
+
+}
+
+
+/* =========================================================
+   ACTIVITY SUMMARY
+========================================================= */
+
+async function loadActivitySummary() {
+
+    const { data } =
+        await apiFetch(
+            '/api/security/activity-summary'
+        );
+
+
+    if (!data.success) {
+        return;
+    }
+
+
+    const summary =
+        data.summary || {};
+
+
+    document
+        .getElementById('summaryLogin')
+        .innerText =
+        summary.login ?? 0;
+
+
+    document
+        .getElementById('summaryOtp')
+        .innerText =
+        summary.otp ?? 0;
+
+
+    document
+        .getElementById('summaryRecovery')
+        .innerText =
+        summary.recovery ?? 0;
+
+
+    document
+        .getElementById('summaryLogout')
+        .innerText =
+        summary.logout ?? 0;
+
+
+    document
+        .getElementById('summaryToken')
+        .innerText =
+        summary.token ?? 0;
+
+
+    document
+        .getElementById('summaryTwoFa')
+        .innerText =
+        summary.two_fa ?? 0;
+
+}
+
+
+/* =========================================================
+   ACTIVITIES
+========================================================= */
+
+async function loadActivities(
+    page = 1,
+    mode = 'normal'
+) {
+
+    if (!currentToken) {
+        return;
+    }
+
+
+    currentActivityPage = page;
+
+
+    const search =
+        document
+            .getElementById('activitySearch')
+            .value;
+
+
+    const event =
+        document
+            .getElementById('activityEvent')
+            .value;
+
+
+    const status =
+        document
+            .getElementById('activityStatus')
+            .value;
+
+
+    const date =
+        document
+            .getElementById('activityDate')
+            .value;
+
+
+    const params =
+        new URLSearchParams();
+
 
     if (search) {
         params.append('search', search);
     }
 
+
     if (event) {
         params.append('event', event);
     }
+
 
     if (status) {
         params.append('status', status);
     }
 
+
     if (date) {
         params.append('date', date);
     }
 
-    const { data } = await apiFetch(
-        `/api/security/activities?${params.toString()}`
+
+    params.append(
+        'page',
+        page
     );
+
+
+    params.append(
+        'per_page',
+        10
+    );
+
+
+    const { data } =
+        await apiFetch(
+            `/api/security/activities?${params.toString()}`
+        );
+
 
     if (!data.success) {
         return;
     }
 
+
     const tbody =
-        document.getElementById('activityTable');
+        document.getElementById(
+            'activityTable'
+        );
+
 
     tbody.innerHTML = '';
 
+
     const activities =
-        data.activities.data || [];
+        data.activities?.data || [];
+
 
     if (activities.length === 0) {
 
         tbody.innerHTML = `
             <tr>
-                <td colspan="5"
-                    class="p-6 text-center text-slate-500">
+                <td
+                    colspan="5"
+                    class="p-6 text-center text-slate-500"
+                >
                     No security activity found.
                 </td>
             </tr>
         `;
 
+
+        renderActivityPagination(
+            data.activities
+        );
+
+
         return;
     }
 
-    activities.forEach(activity => {
 
-        const statusClass =
-            activity.status === 'success'
-                ? 'bg-green-500/10 text-green-300'
-                : 'bg-red-500/10 text-red-300';
+    activities.forEach(
+        activity => {
 
-        tbody.innerHTML += `
-            <tr class="border-b border-slate-800 hover:bg-slate-800/50">
+            const statusClass =
+                activity.status === 'success'
+                    ? 'bg-green-500/10 text-green-300'
+                    : 'bg-red-500/10 text-red-300';
 
-                <td class="p-3 font-medium">
-                    ${formatEvent(activity.event)}
-                </td>
 
-                <td class="p-3">
-                    <span class="px-2 py-1 rounded-full text-xs ${statusClass}">
-                        ${escapeHtml(activity.status)}
-                    </span>
-                </td>
+            tbody.innerHTML += `
+                <tr class="border-b border-slate-800 hover:bg-slate-800/50">
 
-                <td class="p-3 text-slate-400">
-                    ${escapeHtml(activity.description || '')}
-                </td>
+                    <td class="p-3 font-medium">
+                        ${escapeHtml(
+                            formatEvent(activity.event)
+                        )}
+                    </td>
 
-                <td class="p-3 font-mono text-xs text-slate-400">
-                    ${escapeHtml(activity.ip_address || '-')}
-                </td>
+                    <td class="p-3">
 
-                <td class="p-3 text-slate-400 whitespace-nowrap">
-                    ${escapeHtml(activity.created_at)}
-                </td>
+                        <span
+                            class="px-2 py-1 rounded-full text-xs ${statusClass}"
+                        >
+                            ${escapeHtml(
+                                activity.status || '-'
+                            )}
+                        </span>
 
-            </tr>
-        `;
-    });
+                    </td>
+
+                    <td class="p-3 text-slate-400">
+                        ${escapeHtml(
+                            activity.description || ''
+                        )}
+                    </td>
+
+                    <td class="p-3 font-mono text-xs text-slate-400">
+                        ${escapeHtml(
+                            activity.ip_address || '-'
+                        )}
+                    </td>
+
+                    <td class="p-3 text-slate-400 whitespace-nowrap">
+                        ${escapeHtml(
+                            activity.created_at || '-'
+                        )}
+                    </td>
+
+                </tr>
+            `;
+
+        }
+    );
+
+
+    renderActivityPagination(
+        data.activities
+    );
+
 }
 
 
-function formatEvent(event) {
+/* =========================================================
+   ACTIVITY PAGINATION
+========================================================= */
 
-    return event
-        .replaceAll('_', ' ')
-        .replace(/\b\w/g, c => c.toUpperCase());
+function renderActivityPagination(meta) {
+
+    const container =
+        document.getElementById(
+            'activityPagination'
+        );
+
+
+    container.innerHTML = '';
+
+
+    if (!meta) {
+        return;
+    }
+
+
+    const currentPage =
+        Number(
+            meta.current_page || 1
+        );
+
+
+    const lastPage =
+        Number(
+            meta.last_page || 1
+        );
+
+
+    const previousButton =
+        document.createElement('button');
+
+
+    previousButton.innerHTML =
+        '<i class="fa-solid fa-chevron-left"></i>';
+
+
+    previousButton.title =
+        'Previous activity page';
+
+
+    previousButton.disabled =
+        currentPage <= 1;
+
+
+    previousButton.className =
+        currentPage <= 1
+            ? 'px-4 py-2 rounded-lg bg-slate-800 text-slate-600 cursor-not-allowed'
+            : 'px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white';
+
+
+    previousButton.onclick =
+        function () {
+
+            if (currentPage > 1) {
+
+                loadActivities(
+                    currentPage - 1
+                );
+
+            }
+
+        };
+
+
+    container.appendChild(
+        previousButton
+    );
+
+
+    const startPage =
+        Math.max(
+            1,
+            currentPage - 2
+        );
+
+
+    const endPage =
+        Math.min(
+            lastPage,
+            currentPage + 2
+        );
+
+
+    for (
+        let page = startPage;
+        page <= endPage;
+        page++
+    ) {
+
+        const button =
+            document.createElement('button');
+
+
+        button.innerText = page;
+
+
+        button.className =
+            page === currentPage
+                ? 'px-4 py-2 rounded-lg bg-cyan-500 text-slate-950 font-bold'
+                : 'px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white';
+
+
+        button.onclick =
+            function () {
+                loadActivities(page);
+            };
+
+
+        container.appendChild(button);
+
+    }
+
+
+    const nextButton =
+        document.createElement('button');
+
+
+    nextButton.innerHTML =
+        '<i class="fa-solid fa-chevron-right"></i>';
+
+
+    nextButton.title =
+        'Next activity page';
+
+
+    nextButton.disabled =
+        currentPage >= lastPage;
+
+
+    nextButton.className =
+        currentPage >= lastPage
+            ? 'px-4 py-2 rounded-lg bg-slate-800 text-slate-600 cursor-not-allowed'
+            : 'px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white';
+
+
+    nextButton.onclick =
+        function () {
+
+            if (currentPage < lastPage) {
+
+                loadActivities(
+                    currentPage + 1
+                );
+
+            }
+
+        };
+
+
+    container.appendChild(
+        nextButton
+    );
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| TOKEN MANAGEMENT
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   ACTIVITY SEARCH DEBOUNCE
+========================================================= */
+
+function debouncedActivitySearch() {
+
+    clearTimeout(
+        activitySearchTimer
+    );
+
+
+    activitySearchTimer =
+        setTimeout(
+            function () {
+
+                loadActivities(1);
+
+            },
+            400
+        );
+
+}
+
+
+/* =========================================================
+   CSV EXPORT
+========================================================= */
+
+async function exportSecurityActivity() {
+
+    const search =
+        document
+            .getElementById('activitySearch')
+            .value;
+
+
+    const event =
+        document
+            .getElementById('activityEvent')
+            .value;
+
+
+    const status =
+        document
+            .getElementById('activityStatus')
+            .value;
+
+
+    const date =
+        document
+            .getElementById('activityDate')
+            .value;
+
+
+    const params =
+        new URLSearchParams();
+
+
+    if (search) {
+        params.append('search', search);
+    }
+
+
+    if (event) {
+        params.append('event', event);
+    }
+
+
+    if (status) {
+        params.append('status', status);
+    }
+
+
+    if (date) {
+        params.append('date', date);
+    }
+
+
+    const url =
+        `/api/security/activities/export?${params.toString()}`;
+
+
+    try {
+
+        const response =
+            await fetch(
+                url,
+                {
+                    headers: {
+                        'Accept': 'text/csv',
+                        'Authorization':
+                            `Bearer ${currentToken}`,
+                        'X-CSRF-TOKEN':
+                            csrfToken
+                    }
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const data =
+                await response
+                    .json()
+                    .catch(() => ({
+                        message:
+                            'CSV export failed.'
+                    }));
+
+
+            alert(
+                data.message ||
+                'CSV export failed.'
+            );
+
+            return;
+        }
+
+
+        const blob =
+            await response.blob();
+
+
+        const downloadUrl =
+            window.URL.createObjectURL(
+                blob
+            );
+
+
+        const link =
+            document.createElement('a');
+
+
+        link.href =
+            downloadUrl;
+
+
+        link.download =
+            'security-activity.csv';
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        link.click();
+
+
+        link.remove();
+
+
+        window.URL.revokeObjectURL(
+            downloadUrl
+        );
+
+    } catch (error) {
+
+        alert(
+            'Unable to export security activity.'
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   TOKEN MANAGEMENT
+========================================================= */
 
 async function loadTokens() {
 
-    const { data } = await apiFetch('/api/tokens');
+    const { data } =
+        await apiFetch(
+            '/api/tokens'
+        );
+
 
     if (!data.success) {
         return;
     }
 
+
+    allTokens =
+        data.tokens || [];
+
+
+    renderTokens(
+        allTokens
+    );
+
+}
+
+
+function renderTokens(tokens) {
+
     const tbody =
-        document.getElementById('tokenTable');
+        document.getElementById(
+            'tokenTable'
+        );
+
 
     tbody.innerHTML = '';
 
-    if (!data.tokens.length) {
+
+    if (!tokens.length) {
 
         tbody.innerHTML = `
             <tr>
-                <td colspan="5"
-                    class="p-6 text-center text-slate-500">
+                <td
+                    colspan="5"
+                    class="p-6 text-center text-slate-500"
+                >
                     No API tokens found.
                 </td>
             </tr>
@@ -1654,123 +3215,220 @@ async function loadTokens() {
         return;
     }
 
-    data.tokens.forEach(token => {
 
-        const status = token.is_current
-            ? `
-                <span class="px-2 py-1 rounded-full text-xs bg-cyan-500/10 text-cyan-300">
-                    Current
-                </span>
-              `
-            : `
-                <span class="px-2 py-1 rounded-full text-xs bg-slate-800 text-slate-400">
-                    Active
-                </span>
-              `;
+    tokens.forEach(
+        token => {
 
-        const action = token.is_current
-            ? `
-                <span class="text-xs text-slate-500">
-                    Current session
-                </span>
-              `
-            : `
-                <button
-                    onclick="revokeToken(${token.id})"
-                    class="text-red-400 hover:text-red-300 text-xs">
-                    Revoke
-                </button>
-              `;
+            const status =
+                token.is_current
 
-        tbody.innerHTML += `
-            <tr class="border-b border-slate-800">
+                    ? `
+                        <span
+                            class="px-2 py-1 rounded-full text-xs bg-cyan-500/10 text-cyan-300"
+                        >
+                            Current
+                        </span>
+                    `
 
-                <td class="p-3 font-semibold">
-                    ${escapeHtml(token.name)}
-                </td>
+                    : `
+                        <span
+                            class="px-2 py-1 rounded-full text-xs bg-slate-800 text-slate-400"
+                        >
+                            Active
+                        </span>
+                    `;
 
-                <td class="p-3 text-slate-400 text-xs">
-                    ${escapeHtml(token.created_at || '-')}
-                </td>
 
-                <td class="p-3 text-slate-400 text-xs">
-                    ${escapeHtml(token.last_used_at || 'Never')}
-                </td>
+            const action =
+                token.is_current
 
-                <td class="p-3">
-                    ${status}
-                </td>
+                    ? `
+                        <span class="text-xs text-slate-500">
+                            Current session
+                        </span>
+                    `
 
-                <td class="p-3">
-                    ${action}
-                </td>
+                    : `
+                        <button
+                            onclick="revokeToken(${token.id})"
+                            class="text-red-400 hover:text-red-300 text-xs"
+                        >
+                            Revoke
+                        </button>
+                    `;
 
-            </tr>
-        `;
-    });
+
+            tbody.innerHTML += `
+                <tr class="border-b border-slate-800">
+
+                    <td class="p-3 font-semibold">
+                        ${escapeHtml(
+                            token.name
+                        )}
+                    </td>
+
+                    <td class="p-3 text-slate-400 text-xs">
+                        ${escapeHtml(
+                            token.created_at || '-'
+                        )}
+                    </td>
+
+                    <td class="p-3 text-slate-400 text-xs">
+                        ${escapeHtml(
+                            token.last_used_at || 'Never'
+                        )}
+                    </td>
+
+                    <td class="p-3">
+                        ${status}
+                    </td>
+
+                    <td class="p-3">
+                        ${action}
+                    </td>
+
+                </tr>
+            `;
+
+        }
+    );
+
 }
 
+
+/* =========================================================
+   TOKEN SEARCH
+========================================================= */
+
+function filterTokens() {
+
+    const search =
+        document
+            .getElementById('tokenSearch')
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    if (!search) {
+
+        renderTokens(
+            allTokens
+        );
+
+        return;
+    }
+
+
+    const filtered =
+        allTokens.filter(
+            token =>
+                String(
+                    token.name || ''
+                )
+                .toLowerCase()
+                .includes(search)
+        );
+
+
+    renderTokens(
+        filtered
+    );
+
+}
+
+
+/* =========================================================
+   CREATE TOKEN
+========================================================= */
 
 async function createApiToken() {
 
     const name =
-        document.getElementById('newTokenName')
-            .value.trim();
+        document
+            .getElementById('newTokenName')
+            .value
+            .trim();
+
 
     if (!name) {
 
-        alert('Please enter a token name.');
+        alert(
+            'Please enter a token name.'
+        );
 
         return;
     }
 
-    const { response, data } = await apiFetch(
-        '/api/tokens',
-        {
-            method: 'POST',
-            body: JSON.stringify({
-                name
-            })
-        }
-    );
+
+    const { response, data } =
+        await apiFetch(
+            '/api/tokens',
+            {
+                method: 'POST',
+
+                body: JSON.stringify({
+                    name
+                })
+            }
+        );
+
 
     if (!response.ok || !data.success) {
 
-        alert(data.message || 'Token creation failed.');
+        alert(
+            data.message ||
+            'Token creation failed.'
+        );
 
         return;
     }
+
 
     document
         .getElementById('newTokenResult')
         .classList.remove('hidden');
 
+
     document
         .getElementById('newTokenValue')
-        .innerText = data.token;
+        .innerText =
+        data.token;
+
 
     document
         .getElementById('newTokenName')
         .value = '';
 
+
     await loadTokens();
+
 }
 
 
+/* =========================================================
+   REVOKE TOKEN
+========================================================= */
+
 async function revokeToken(tokenId) {
 
-    if (!confirm(
-        'Are you sure you want to revoke this API token?'
-    )) {
+    if (
+        !confirm(
+            'Are you sure you want to revoke this API token?'
+        )
+    ) {
         return;
     }
 
-    const { response, data } = await apiFetch(
-        `/api/tokens/${tokenId}`,
-        {
-            method: 'DELETE'
-        }
-    );
+
+    const { response, data } =
+        await apiFetch(
+            `/api/tokens/${tokenId}`,
+            {
+                method: 'DELETE'
+            }
+        );
+
 
     if (!response.ok || !data.success) {
 
@@ -1782,26 +3440,39 @@ async function revokeToken(tokenId) {
         return;
     }
 
+
     await loadTokens();
 
     await loadStatistics();
+
+    await loadActivitySummary();
+
 }
 
 
+/* =========================================================
+   REVOKE OTHER TOKENS
+========================================================= */
+
 async function revokeOtherTokens() {
 
-    if (!confirm(
-        'Revoke all other API tokens? Your current token will remain active.'
-    )) {
+    if (
+        !confirm(
+            'Revoke all other API tokens? Your current token will remain active.'
+        )
+    ) {
         return;
     }
 
-    const { response, data } = await apiFetch(
-        '/api/tokens/revoke-others',
-        {
-            method: 'DELETE'
-        }
-    );
+
+    const { response, data } =
+        await apiFetch(
+            '/api/tokens/revoke-others',
+            {
+                method: 'DELETE'
+            }
+        );
+
 
     if (!response.ok || !data.success) {
 
@@ -1813,78 +3484,209 @@ async function revokeOtherTokens() {
         return;
     }
 
-    alert(data.message);
+
+    alert(
+        data.message ||
+        'Other tokens revoked successfully.'
+    );
+
 
     await loadTokens();
+
+    await loadActivitySummary();
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| RECOVERY CODES
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   LOGOUT ALL DEVICES
+========================================================= */
 
-async function regenerateBackupCodes() {
+async function logoutAllDevices() {
 
-    if (!confirm(
-        'Generate new recovery codes? Existing recovery codes will no longer be usable.'
-    )) {
+    if (
+        !confirm(
+            'Logout from all devices? All other Sanctum sessions will be revoked.'
+        )
+    ) {
         return;
     }
 
-    const { response, data } = await apiFetch(
-        '/api/2fa/recovery-codes/regenerate',
-        {
-            method: 'POST'
-        }
-    );
+
+    const { response, data } =
+        await apiFetch(
+            '/api/security/logout-all',
+            {
+                method: 'POST'
+            }
+        );
+
 
     if (!response.ok || !data.success) {
 
-        showSettingsMessage(
-            data.message || 'Unable to generate recovery codes.'
+        showMessage(
+            'logoutAllMessage',
+            data.message ||
+            'Unable to logout from all devices.'
         );
 
         return;
     }
 
+
+    showMessage(
+        'logoutAllMessage',
+        data.message ||
+        'All other devices have been logged out.',
+        'success'
+    );
+
+
+    await loadTokens();
+
+    await loadStatistics();
+
+    await loadActivitySummary();
+
+    await loadActivities(1);
+
+}
+
+
+/* =========================================================
+   CURRENT SESSION
+========================================================= */
+
+async function loadSessionInformation() {
+
+    const { data } =
+        await apiFetch(
+            '/api/security/session'
+        );
+
+
+    if (!data.success) {
+        return;
+    }
+
+
+    const session =
+        data.session || {};
+
+
+    document
+        .getElementById('sessionToken')
+        .innerText =
+        session.token ||
+        'Current session';
+
+
+    document
+        .getElementById('sessionIp')
+        .innerText =
+        session.ip_address ||
+        '-';
+
+
+    document
+        .getElementById('sessionBrowser')
+        .innerText =
+        session.browser ||
+        '-';
+
+
+    document
+        .getElementById('sessionDevice')
+        .innerText =
+        session.device ||
+        '-';
+
+}
+
+
+/* =========================================================
+   RECOVERY CODES
+========================================================= */
+
+async function regenerateBackupCodes() {
+
+    if (
+        !confirm(
+            'Generate new recovery codes? Existing recovery codes will no longer be usable.'
+        )
+    ) {
+        return;
+    }
+
+
+    const { response, data } =
+        await apiFetch(
+            '/api/2fa/recovery-codes/regenerate',
+            {
+                method: 'POST'
+            }
+        );
+
+
+    if (!response.ok || !data.success) {
+
+        showSettingsMessage(
+            data.message ||
+            'Unable to generate recovery codes.'
+        );
+
+        return;
+    }
+
+
     currentRecoveryCodes =
         data.recovery_codes || [];
+
 
     showSettingsMessage(
         'New recovery codes generated successfully.',
         'success'
     );
 
-    alert(
-        'New recovery codes:\n\n' +
-        data.plain_codes.join('\n')
-    );
+
+    if (data.plain_codes) {
+
+        alert(
+            'New recovery codes:\n\n' +
+            data.plain_codes.join('\n')
+        );
+
+    }
+
 
     await loadProfile();
 
-    await loadActivities();
+    await loadActivities(1);
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| START AUTHENTICATOR CHANGE
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   AUTHENTICATOR CHANGE
+========================================================= */
 
 async function startAuthenticatorChange() {
 
     const password =
-        document.getElementById(
-            'changeAuthPassword'
-        ).value;
+        document
+            .getElementById(
+                'changeAuthPassword'
+            )
+            .value;
+
 
     const otp =
-        document.getElementById(
-            'changeAuthOtp'
-        ).value;
+        document
+            .getElementById(
+                'changeAuthOtp'
+            )
+            .value;
+
 
     if (!password || !otp) {
 
@@ -1895,16 +3697,20 @@ async function startAuthenticatorChange() {
         return;
     }
 
-    const { response, data } = await apiFetch(
-        '/api/security/2fa/new-authenticator',
-        {
-            method: 'POST',
-            body: JSON.stringify({
-                password,
-                otp
-            })
-        }
-    );
+
+    const { response, data } =
+        await apiFetch(
+            '/api/security/2fa/new-authenticator',
+            {
+                method: 'POST',
+
+                body: JSON.stringify({
+                    password,
+                    otp
+                })
+            }
+        );
+
 
     if (!response.ok || !data.success) {
 
@@ -1916,43 +3722,53 @@ async function startAuthenticatorChange() {
         return;
     }
 
-    currentSecretKey = data.manual_key;
-    currentQrUrl = data.qr_code;
+
+    currentSecretKey =
+        data.manual_key;
+
+
+    currentQrUrl =
+        data.qr_code;
+
 
     showSettingsMessage(
-        'New authenticator generated. Verify the new OTP below.',
+        'New authenticator generated.',
         'success'
     );
 
-    /*
-    |--------------------------------------------------------------------------
-    | Show confirmation dialog
-    |--------------------------------------------------------------------------
-    */
 
-    const newOtp = prompt(
-        'Scan the new QR code using Google Authenticator.\n\n' +
-        'Manual key:\n' +
-        data.manual_key +
-        '\n\n' +
-        'Enter the NEW 6-digit OTP to confirm:'
-    );
+    const newOtp =
+        prompt(
+            'Scan the new QR code using Google Authenticator.\n\n' +
+            'Manual key:\n' +
+            data.manual_key +
+            '\n\n' +
+            'Enter the NEW 6-digit OTP to confirm:'
+        );
+
 
     if (!newOtp) {
         return;
     }
 
-    const result = await apiFetch(
-        '/api/security/2fa/confirm-authenticator',
-        {
-            method: 'POST',
-            body: JSON.stringify({
-                otp: newOtp
-            })
-        }
-    );
 
-    if (!result.response.ok || !result.data.success) {
+    const result =
+        await apiFetch(
+            '/api/security/2fa/confirm-authenticator',
+            {
+                method: 'POST',
+
+                body: JSON.stringify({
+                    otp: newOtp
+                })
+            }
+        );
+
+
+    if (
+        !result.response.ok ||
+        !result.data.success
+    ) {
 
         showSettingsMessage(
             result.data.message ||
@@ -1962,40 +3778,50 @@ async function startAuthenticatorChange() {
         return;
     }
 
+
     showSettingsMessage(
         'New authenticator successfully enabled.',
         'success'
     );
 
+
     await loadProfile();
 
-    await loadActivities();
+    await loadActivities(1);
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| DISABLE 2FA
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   DISABLE 2FA
+========================================================= */
 
 async function disableTwoFactor() {
 
-    if (!confirm(
-        'Are you sure you want to disable 2FA?'
-    )) {
+    if (
+        !confirm(
+            'Are you sure you want to disable 2FA?'
+        )
+    ) {
         return;
     }
 
+
     const password =
-        document.getElementById(
-            'disablePassword'
-        ).value;
+        document
+            .getElementById(
+                'disablePassword'
+            )
+            .value;
+
 
     const otp =
-        document.getElementById(
-            'disableOtp'
-        ).value;
+        document
+            .getElementById(
+                'disableOtp'
+            )
+            .value;
+
 
     if (!password || !otp) {
 
@@ -2006,16 +3832,20 @@ async function disableTwoFactor() {
         return;
     }
 
-    const { response, data } = await apiFetch(
-        '/api/security/2fa/disable',
-        {
-            method: 'POST',
-            body: JSON.stringify({
-                password,
-                otp
-            })
-        }
-    );
+
+    const { response, data } =
+        await apiFetch(
+            '/api/security/2fa/disable',
+            {
+                method: 'POST',
+
+                body: JSON.stringify({
+                    password,
+                    otp
+                })
+            }
+        );
+
 
     if (!response.ok || !data.success) {
 
@@ -2027,24 +3857,27 @@ async function disableTwoFactor() {
         return;
     }
 
+
     showSettingsMessage(
         '2FA has been disabled successfully.',
         'success'
     );
 
+
     await loadProfile();
 
     await loadStatistics();
 
-    await loadActivities();
+    await loadActivitySummary();
+
+    await loadActivities(1);
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| DASHBOARD TABS
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   DASHBOARD TABS
+========================================================= */
 
 function showDashboardTab(tab) {
 
@@ -2052,73 +3885,114 @@ function showDashboardTab(tab) {
         'overview',
         'activity',
         'tokens',
-        'settings'
+        'settings',
+        'account'
     ];
 
-    tabs.forEach(item => {
 
-        document
-            .getElementById(`${item}Tab`)
-            .classList.add('hidden');
+    tabs.forEach(
+        item => {
 
-    });
+            document
+                .getElementById(
+                    `${item}Tab`
+                )
+                .classList.add('hidden');
+
+        }
+    );
+
 
     document
-        .getElementById(`${tab}Tab`)
+        .getElementById(
+            `${tab}Tab`
+        )
         .classList.remove('hidden');
 
 
     document
-        .querySelectorAll('.dashboard-tab')
-        .forEach(button => {
+        .querySelectorAll(
+            '.dashboard-tab'
+        )
+        .forEach(
+            button => {
 
-            button.classList.remove(
-                'bg-cyan-500',
-                'text-slate-950'
-            );
+                button.classList.remove(
+                    'bg-cyan-500',
+                    'text-slate-950'
+                );
 
-            button.classList.add(
-                'bg-slate-800',
-                'text-slate-300'
-            );
 
-        });
+                button.classList.add(
+                    'bg-slate-800',
+                    'text-slate-300'
+                );
+
+            }
+        );
+
 
     const activeButton =
         document.querySelector(
             `.dashboard-tab[data-tab="${tab}"]`
         );
 
-    activeButton.classList.remove(
-        'bg-slate-800',
-        'text-slate-300'
-    );
 
-    activeButton.classList.add(
-        'bg-cyan-500',
-        'text-slate-950'
-    );
+    if (activeButton) {
+
+        activeButton.classList.remove(
+            'bg-slate-800',
+            'text-slate-300'
+        );
+
+
+        activeButton.classList.add(
+            'bg-cyan-500',
+            'text-slate-950'
+        );
+
+    }
 
 
     if (tab === 'activity') {
-        loadActivities();
+
+        loadActivities(
+            currentActivityPage
+        );
+
     }
+
 
     if (tab === 'tokens') {
+
         loadTokens();
+
     }
 
+
     if (tab === 'settings') {
+
         loadProfile();
+
     }
+
+
+    if (tab === 'account') {
+
+        loadProfile();
+
+        loadSessionInformation();
+
+        loadPasswordSecurityLog();
+
+    }
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| 2FA LOGIN TABS
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   2FA LOGIN TABS
+========================================================= */
 
 function switch2FaMethod(method) {
 
@@ -2127,105 +4001,160 @@ function switch2FaMethod(method) {
             'authenticatorBox'
         );
 
+
     const recovery =
         document.getElementById(
             'recoveryBox'
         );
+
 
     const authTab =
         document.getElementById(
             'authenticatorTab'
         );
 
+
     const recoveryTab =
         document.getElementById(
             'recoveryTab'
         );
 
-    if (method === 'authenticator') {
 
-        authenticator.classList.remove('hidden');
-        recovery.classList.add('hidden');
+    if (
+        method ===
+        'authenticator'
+    ) {
 
-        authTab.classList.add(
-            'border-cyan-400',
-            'text-cyan-400'
-        );
+        authenticator
+            .classList
+            .remove('hidden');
 
-        authTab.classList.remove(
-            'border-transparent',
-            'text-slate-400'
-        );
 
-        recoveryTab.classList.remove(
-            'border-cyan-400',
-            'text-cyan-400'
-        );
+        recovery
+            .classList
+            .add('hidden');
 
-        recoveryTab.classList.add(
-            'border-transparent',
-            'text-slate-400'
-        );
+
+        authTab
+            .classList
+            .add(
+                'border-cyan-400',
+                'text-cyan-400'
+            );
+
+
+        authTab
+            .classList
+            .remove(
+                'border-transparent',
+                'text-slate-400'
+            );
+
+
+        recoveryTab
+            .classList
+            .remove(
+                'border-cyan-400',
+                'text-cyan-400'
+            );
+
+
+        recoveryTab
+            .classList
+            .add(
+                'border-transparent',
+                'text-slate-400'
+            );
 
     } else {
 
-        authenticator.classList.add('hidden');
-        recovery.classList.remove('hidden');
+        authenticator
+            .classList
+            .add('hidden');
 
-        recoveryTab.classList.add(
-            'border-cyan-400',
-            'text-cyan-400'
-        );
 
-        recoveryTab.classList.remove(
-            'border-transparent',
-            'text-slate-400'
-        );
+        recovery
+            .classList
+            .remove('hidden');
 
-        authTab.classList.remove(
-            'border-cyan-400',
-            'text-cyan-400'
-        );
 
-        authTab.classList.add(
-            'border-transparent',
-            'text-slate-400'
-        );
+        recoveryTab
+            .classList
+            .add(
+                'border-cyan-400',
+                'text-cyan-400'
+            );
+
+
+        recoveryTab
+            .classList
+            .remove(
+                'border-transparent',
+                'text-slate-400'
+            );
+
+
+        authTab
+            .classList
+            .remove(
+                'border-cyan-400',
+                'text-cyan-400'
+            );
+
+
+        authTab
+            .classList
+            .add(
+                'border-transparent',
+                'text-slate-400'
+            );
+
     }
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| BACK TO LOGIN
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   BACK TO LOGIN
+========================================================= */
 
 function backToLogin() {
 
     document
-        .getElementById('twoFactorSection')
-        .classList.add('hidden');
+        .getElementById(
+            'twoFactorSection'
+        )
+        .classList
+        .add('hidden');
+
 
     document
-        .getElementById('loginSection')
-        .classList.remove('hidden');
+        .getElementById(
+            'loginSection'
+        )
+        .classList
+        .remove('hidden');
+
 
     document
-        .getElementById('otpInput')
+        .getElementById(
+            'otpInput'
+        )
         .value = '';
 
+
     document
-        .getElementById('recoveryInput')
+        .getElementById(
+            'recoveryInput'
+        )
         .value = '';
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| LOGOUT
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 async function handleLogout() {
 
@@ -2233,39 +4162,68 @@ async function handleLogout() {
         return;
     }
 
-    await apiFetch('/api/logout', {
-        method: 'POST'
-    });
+
+    await apiFetch(
+        '/api/logout',
+        {
+            method: 'POST'
+        }
+    );
+
+
+    stopAutoRefresh();
+
 
     currentToken = null;
 
     currentUserId = null;
 
-    document
-        .getElementById('dashboardSection')
-        .classList.add('hidden');
+    currentUserEmail = null;
+
+    currentUserName = null;
+
 
     document
-        .getElementById('headerUser')
-        .classList.add('hidden');
+        .getElementById(
+            'dashboardSection'
+        )
+        .classList
+        .add('hidden');
+
 
     document
-        .getElementById('loginSection')
-        .classList.remove('hidden');
+        .getElementById(
+            'headerUser'
+        )
+        .classList
+        .add('hidden');
+
 
     document
-        .getElementById('loginPassword')
+        .getElementById(
+            'loginSection'
+        )
+        .classList
+        .remove('hidden');
+
+
+    document
+        .getElementById(
+            'loginPassword'
+        )
         .value = '';
 
-    alert('Logged out successfully.');
+
+    alert(
+        'Logged out successfully.'
+    );
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| SETTINGS MESSAGE
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   SETTINGS MESSAGE
+========================================================= */
 
 function showSettingsMessage(
     message,
@@ -2277,77 +4235,114 @@ function showSettingsMessage(
         message,
         type
     );
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| COPY
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   COPY
+========================================================= */
 
 async function copyText(text) {
 
     try {
 
-        await navigator.clipboard.writeText(text);
+        await navigator
+            .clipboard
+            .writeText(text);
 
-        alert('Copied successfully.');
+
+        alert(
+            'Copied successfully.'
+        );
 
     } catch (error) {
 
-        alert('Unable to copy.');
+        alert(
+            'Unable to copy.'
+        );
 
     }
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| HTML ESCAPE
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
 
 function escapeHtml(value) {
 
-    const div = document.createElement('div');
+    const div =
+        document.createElement(
+            'div'
+        );
 
-    div.innerText = value ?? '';
+
+    div.innerText =
+        value ?? '';
+
 
     return div.innerHTML;
+
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| OTP INPUT
-|--------------------------------------------------------------------------
-*/
+/* =========================================================
+   FORMAT EVENT
+========================================================= */
+
+function formatEvent(event) {
+
+    if (!event) {
+        return '-';
+    }
+
+
+    return event
+        .replaceAll('_', ' ')
+        .replace(/\b\w/g, c =>
+            c.toUpperCase()
+        );
+
+}
+
+
+/* =========================================================
+   OTP INPUT
+========================================================= */
 
 document
     .getElementById('otpInput')
-    .addEventListener('input', function () {
+    .addEventListener(
+        'input',
+        function () {
 
-        this.value = this.value
-            .replace(/\D/g, '')
-            .slice(0, 6);
+            this.value =
+                this.value
+                    .replace(/\D/g, '')
+                    .slice(0, 6);
 
-        if (this.value.length === 6) {
 
-            submitGoogleOtp();
+            if (
+                this.value.length === 6
+            ) {
+
+                submitGoogleOtp();
+
+            }
 
         }
+    );
 
-    });
 
+/* =========================================================
+   INITIAL TAB
+========================================================= */
 
-/*
-|--------------------------------------------------------------------------
-| INITIAL TAB
-|--------------------------------------------------------------------------
-*/
-
-showDashboardTab('overview');
+showDashboardTab(
+    'overview'
+);
 
 </script>
 
