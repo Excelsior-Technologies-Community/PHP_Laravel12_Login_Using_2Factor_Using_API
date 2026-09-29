@@ -38,7 +38,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Generate 8 unique emergency recovery codes (e.g. ABCD-1234)
+     * Generate 8 unique emergency recovery codes.
      */
     public function generateRecoveryCodes(): array
     {
@@ -48,12 +48,14 @@ class User extends Authenticatable
         for ($i = 0; $i < 8; $i++) {
             $part1 = strtoupper(bin2hex(random_bytes(2)));
             $part2 = strtoupper(bin2hex(random_bytes(2)));
+
             $code = "{$part1}-{$part2}";
 
             $codes[] = [
                 'code' => $code,
                 'used_at' => null,
             ];
+
             $plainCodes[] = $code;
         }
 
@@ -64,20 +66,39 @@ class User extends Authenticatable
     }
 
     /**
-     * Verify and mark a recovery code as used
+     * Verify and consume recovery code.
      */
     public function verifyAndConsumeRecoveryCode(string $code): bool
     {
-        $cleanedCode = strtoupper(trim(str_replace(' ', '', $code)));
+        $cleanedCode = strtoupper(
+            trim(
+                str_replace(' ', '', $code)
+            )
+        );
+
         $codes = $this->two_factor_recovery_codes ?? [];
 
         foreach ($codes as $index => $item) {
-            $existingCode = strtoupper(trim($item['code'] ?? ''));
-            // Check formatted or unhyphenated match
-            if (($existingCode === $cleanedCode || str_replace('-', '', $existingCode) === str_replace('-', '', $cleanedCode)) && empty($item['used_at'])) {
+            $existingCode = strtoupper(
+                trim(
+                    $item['code'] ?? ''
+                )
+            );
+
+            if (
+                (
+                    $existingCode === $cleanedCode ||
+                    str_replace('-', '', $existingCode) ===
+                    str_replace('-', '', $cleanedCode)
+                )
+                &&
+                empty($item['used_at'])
+            ) {
                 $codes[$index]['used_at'] = now()->toDateTimeString();
+
                 $this->two_factor_recovery_codes = $codes;
                 $this->save();
+
                 return true;
             }
         }
@@ -86,10 +107,31 @@ class User extends Authenticatable
     }
 
     /**
-     * Get list of recovery codes with status
+     * Get recovery code list.
      */
     public function getRecoveryCodesList(): array
     {
         return $this->two_factor_recovery_codes ?? [];
+    }
+
+    /**
+     * Get remaining recovery code count.
+     */
+    public function remainingRecoveryCodesCount(): int
+    {
+        return count(
+            array_filter(
+                $this->getRecoveryCodesList(),
+                fn ($code) => empty($code['used_at'])
+            )
+        );
+    }
+
+    /**
+     * Security activities relationship.
+     */
+    public function securityActivities()
+    {
+        return $this->hasMany(SecurityActivity::class);
     }
 }
