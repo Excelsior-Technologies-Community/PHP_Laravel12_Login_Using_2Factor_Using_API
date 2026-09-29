@@ -34,7 +34,7 @@ class AuthController extends Controller
     }
 
     // =========================================================
-    // LOGIN - EMAIL + PASSWORD
+    // LOGIN
     // =========================================================
 
     public function login(Request $request)
@@ -47,6 +47,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
+
             $this->logSecurityActivity(
                 $user,
                 'password_login',
@@ -65,13 +66,13 @@ class AuthController extends Controller
 
         $google2fa = new Google2FA();
 
-        // First login / first 2FA setup
         if (!$user->google_2fa_secret) {
-            $user->google_2fa_secret = $google2fa->generateSecretKey();
+            $user->google_2fa_secret =
+                $google2fa->generateSecretKey();
+
             $user->save();
         }
 
-        // Generate recovery codes if missing
         if (empty($user->two_factor_recovery_codes)) {
             $user->generateRecoveryCodes();
         }
@@ -82,18 +83,16 @@ class AuthController extends Controller
             'user_id' => $user->id,
             'user_email' => $user->email,
             'user_name' => $user->name,
-            'google_2fa_enabled' => (bool) $user->google_2fa_enabled,
-            'has_recovery_codes' => !empty($user->two_factor_recovery_codes),
-            'remaining_recovery_codes' => $user->remainingRecoveryCodesCount(),
+            'google_2fa_enabled' =>
+                (bool) $user->google_2fa_enabled,
+            'has_recovery_codes' =>
+                !empty($user->two_factor_recovery_codes),
+            'remaining_recovery_codes' =>
+                $user->remainingRecoveryCodesCount(),
         ];
 
-        /*
-        |--------------------------------------------------------------------------
-        | Only expose QR/manual key during initial setup
-        |--------------------------------------------------------------------------
-        */
-
         if (!$user->google_2fa_enabled) {
+
             $qrCodeUrl = $google2fa->getQRCodeUrl(
                 config('app.name', '2FA Portal'),
                 $user->email,
@@ -101,7 +100,8 @@ class AuthController extends Controller
             );
 
             $response['qr_code'] = $qrCodeUrl;
-            $response['manual_key'] = $user->google_2fa_secret;
+            $response['manual_key'] =
+                $user->google_2fa_secret;
         }
 
         return response()->json($response);
@@ -121,6 +121,7 @@ class AuthController extends Controller
         $user = User::find($request->user_id);
 
         if (!$user || !$user->google_2fa_secret) {
+
             return response()->json([
                 'success' => false,
                 'message' => '2FA is not setup for this user.',
@@ -136,6 +137,7 @@ class AuthController extends Controller
         );
 
         if (!$isValid) {
+
             $this->logSecurityActivity(
                 $user,
                 'google_otp_login',
@@ -146,12 +148,13 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Invalid Google OTP code. Please check your Google Authenticator app.',
+                'message' =>
+                    'Invalid Google OTP code. Please check your Google Authenticator app.',
             ], 401);
         }
 
-        // Enable 2FA after first successful OTP verification
         if (!$user->google_2fa_enabled) {
+
             $user->google_2fa_enabled = true;
             $user->save();
         }
@@ -160,7 +163,9 @@ class AuthController extends Controller
             $user->generateRecoveryCodes();
         }
 
-        $token = $user->createToken('api-token')->plainTextToken;
+        $token = $user
+            ->createToken('api-token')
+            ->plainTextToken;
 
         $this->logSecurityActivity(
             $user,
@@ -180,14 +185,17 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '2FA Login successful via Google Authenticator.',
+            'message' =>
+                '2FA Login successful via Google Authenticator.',
             'token' => $token,
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'google_2fa_enabled' => (bool) $user->google_2fa_enabled,
-                'recovery_codes' => $user->getRecoveryCodesList(),
+                'google_2fa_enabled' =>
+                    (bool) $user->google_2fa_enabled,
+                'recovery_codes' =>
+                    $user->getRecoveryCodesList(),
             ],
         ]);
     }
@@ -206,6 +214,7 @@ class AuthController extends Controller
         $user = User::find($request->user_id);
 
         if (!$user) {
+
             return response()->json([
                 'success' => false,
                 'message' => 'User not found.',
@@ -217,6 +226,7 @@ class AuthController extends Controller
         );
 
         if (!$isValid) {
+
             $this->logSecurityActivity(
                 $user,
                 'recovery_code_login',
@@ -227,11 +237,14 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Invalid or already used emergency recovery code.',
+                'message' =>
+                    'Invalid or already used emergency recovery code.',
             ], 401);
         }
 
-        $token = $user->createToken('api-token')->plainTextToken;
+        $token = $user
+            ->createToken('api-token')
+            ->plainTextToken;
 
         $this->logSecurityActivity(
             $user,
@@ -251,52 +264,18 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Login successful via Emergency Backup Recovery Code.',
+            'message' =>
+                'Login successful via Emergency Backup Recovery Code.',
             'token' => $token,
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'google_2fa_enabled' => (bool) $user->google_2fa_enabled,
-                'recovery_codes' => $user->getRecoveryCodesList(),
+                'google_2fa_enabled' =>
+                    (bool) $user->google_2fa_enabled,
+                'recovery_codes' =>
+                    $user->getRecoveryCodesList(),
             ],
-        ]);
-    }
-
-    // =========================================================
-    // REGENERATE RECOVERY CODES
-    // =========================================================
-
-    public function regenerateRecoveryCodes(Request $request)
-    {
-        $user = $request->user();
-
-        if (!$user && $request->has('user_id')) {
-            $user = User::find($request->user_id);
-        }
-
-        if (!$user) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Unauthorized or user not found.',
-            ], 401);
-        }
-
-        $newCodes = $user->generateRecoveryCodes();
-
-        $this->logSecurityActivity(
-            $user,
-            'recovery_codes_regenerated',
-            'success',
-            'Emergency recovery codes were regenerated.',
-            $request
-        );
-
-        return response()->json([
-            'success' => true,
-            'message' => '8 fresh emergency recovery codes generated successfully.',
-            'recovery_codes' => $user->getRecoveryCodesList(),
-            'plain_codes' => $newCodes,
         ]);
     }
 
@@ -311,11 +290,17 @@ class AuthController extends Controller
         $codes = $user->getRecoveryCodesList();
 
         $usedCount = count(
-            array_filter($codes, fn ($c) => !empty($c['used_at']))
+            array_filter(
+                $codes,
+                fn ($c) => !empty($c['used_at'])
+            )
         );
 
         $remainingCount = count(
-            array_filter($codes, fn ($c) => empty($c['used_at']))
+            array_filter(
+                $codes,
+                fn ($c) => empty($c['used_at'])
+            )
         );
 
         return response()->json([
@@ -324,9 +309,9 @@ class AuthController extends Controller
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'google_2fa_enabled' => (bool) $user->google_2fa_enabled,
+                'google_2fa_enabled' =>
+                    (bool) $user->google_2fa_enabled,
 
-                // Do NOT expose the permanent secret here.
                 'recovery_stats' => [
                     'total' => count($codes),
                     'used' => $usedCount,
@@ -339,6 +324,110 @@ class AuthController extends Controller
     }
 
     // =========================================================
+    // NEW 1
+    // UPDATE PROFILE
+    // =========================================================
+
+    public function updateProfile(Request $request)
+    {
+        $user = $request->user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                'unique:users,email,' . $user->id,
+            ],
+        ]);
+
+        $oldName = $user->name;
+        $oldEmail = $user->email;
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        $this->logSecurityActivity(
+            $user,
+            'profile_updated',
+            'success',
+            "Profile updated from {$oldEmail} to {$user->email}.",
+            $request
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile updated successfully.',
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+            ],
+        ]);
+    }
+
+    // =========================================================
+    // NEW 2
+    // CHANGE PASSWORD
+    // =========================================================
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|string',
+            'new_password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+            ],
+        ]);
+
+        $user = $request->user();
+
+        if (!Hash::check(
+            $request->current_password,
+            $user->password
+        )) {
+
+            $this->logSecurityActivity(
+                $user,
+                'password_changed',
+                'failed',
+                'Incorrect current password while changing password.',
+                $request
+            );
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Current password is incorrect.',
+            ], 422);
+        }
+
+        $user->password = Hash::make(
+            $request->new_password
+        );
+
+        $user->save();
+
+        $this->logSecurityActivity(
+            $user,
+            'password_changed',
+            'success',
+            'Account password was changed successfully.',
+            $request
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Password changed successfully.',
+        ]);
+    }
+
+    // =========================================================
     // SECURITY STATISTICS
     // =========================================================
 
@@ -346,47 +435,91 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        $query = SecurityActivity::where('user_id', $user->id);
+        $query = SecurityActivity::where(
+            'user_id',
+            $user->id
+        );
 
         return response()->json([
             'success' => true,
 
             'statistics' => [
-                'total_events' => (clone $query)->count(),
+                'total_events' =>
+                    (clone $query)->count(),
 
-                'successful_logins' => (clone $query)
-                    ->whereIn('event', [
-                        'google_otp_login',
-                        'recovery_code_login',
-                    ])
-                    ->where('status', 'success')
-                    ->count(),
+                'successful_logins' =>
+                    (clone $query)
+                        ->whereIn('event', [
+                            'google_otp_login',
+                            'recovery_code_login',
+                        ])
+                        ->where('status', 'success')
+                        ->count(),
 
-                'failed_logins' => (clone $query)
-                    ->where('status', 'failed')
-                    ->count(),
+                'failed_logins' =>
+                    (clone $query)
+                        ->where('status', 'failed')
+                        ->count(),
 
-                'otp_verifications' => (clone $query)
-                    ->where('event', 'google_otp_login')
-                    ->count(),
+                'otp_verifications' =>
+                    (clone $query)
+                        ->where('event', 'google_otp_login')
+                        ->count(),
 
-                'recovery_code_logins' => (clone $query)
-                    ->where('event', 'recovery_code_login')
-                    ->where('status', 'success')
-                    ->count(),
+                'recovery_code_logins' =>
+                    (clone $query)
+                        ->where('event', 'recovery_code_login')
+                        ->where('status', 'success')
+                        ->count(),
 
-                'today_events' => (clone $query)
-                    ->whereDate('created_at', today())
-                    ->count(),
+                'today_events' =>
+                    (clone $query)
+                        ->whereDate(
+                            'created_at',
+                            today()
+                        )
+                        ->count(),
 
-                'successful_events' => (clone $query)
-                    ->where('status', 'success')
-                    ->count(),
+                'successful_events' =>
+                    (clone $query)
+                        ->where('status', 'success')
+                        ->count(),
 
-                'failed_events' => (clone $query)
-                    ->where('status', 'failed')
-                    ->count(),
+                'failed_events' =>
+                    (clone $query)
+                        ->where('status', 'failed')
+                        ->count(),
+
+                'active_tokens' =>
+                    $user->tokens()->count(),
+
+                'recovery_codes_remaining' =>
+                    $user->remainingRecoveryCodesCount(),
             ],
+        ]);
+    }
+
+    // =========================================================
+    // NEW 3
+    // ACTIVITY SUMMARY
+    // =========================================================
+
+    public function activitySummary(Request $request)
+    {
+        $user = $request->user();
+
+        $rows = SecurityActivity::where(
+            'user_id',
+            $user->id
+        )
+            ->selectRaw('event, COUNT(*) as total')
+            ->groupBy('event')
+            ->orderByDesc('total')
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'summary' => $rows,
         ]);
     }
 
@@ -398,38 +531,209 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        $query = SecurityActivity::where('user_id', $user->id);
+        $query = SecurityActivity::where(
+            'user_id',
+            $user->id
+        );
 
         if ($request->filled('search')) {
+
             $search = $request->search;
 
             $query->where(function ($q) use ($search) {
-                $q->where('event', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%")
-                    ->orWhere('ip_address', 'like', "%{$search}%");
+
+                $q->where(
+                    'event',
+                    'like',
+                    "%{$search}%"
+                )
+                    ->orWhere(
+                        'description',
+                        'like',
+                        "%{$search}%"
+                    )
+                    ->orWhere(
+                        'ip_address',
+                        'like',
+                        "%{$search}%"
+                    );
             });
         }
 
         if ($request->filled('event')) {
-            $query->where('event', $request->event);
+            $query->where(
+                'event',
+                $request->event
+            );
         }
 
         if ($request->filled('status')) {
-            $query->where('status', $request->status);
+            $query->where(
+                'status',
+                $request->status
+            );
         }
 
         if ($request->filled('date')) {
-            $query->whereDate('created_at', $request->date);
+            $query->whereDate(
+                'created_at',
+                $request->date
+            );
+        }
+
+        if ($request->filled('from_date')) {
+            $query->whereDate(
+                'created_at',
+                '>=',
+                $request->from_date
+            );
+        }
+
+        if ($request->filled('to_date')) {
+            $query->whereDate(
+                'created_at',
+                '<=',
+                $request->to_date
+            );
         }
 
         $activities = $query
             ->latest()
-            ->paginate(15);
+            ->paginate(15)
+            ->withQueryString();
 
         return response()->json([
             'success' => true,
             'activities' => $activities,
         ]);
+    }
+
+    // =========================================================
+    // NEW 4
+    // EXPORT SECURITY ACTIVITIES CSV
+    // =========================================================
+
+    public function exportActivities(Request $request)
+    {
+        $user = $request->user();
+
+        $query = SecurityActivity::where(
+            'user_id',
+            $user->id
+        );
+
+        if ($request->filled('search')) {
+
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                $q->where(
+                    'event',
+                    'like',
+                    "%{$search}%"
+                )
+                    ->orWhere(
+                        'description',
+                        'like',
+                        "%{$search}%"
+                    )
+                    ->orWhere(
+                        'ip_address',
+                        'like',
+                        "%{$search}%"
+                    );
+            });
+        }
+
+        if ($request->filled('event')) {
+            $query->where(
+                'event',
+                $request->event
+            );
+        }
+
+        if ($request->filled('status')) {
+            $query->where(
+                'status',
+                $request->status
+            );
+        }
+
+        if ($request->filled('date')) {
+            $query->whereDate(
+                'created_at',
+                $request->date
+            );
+        }
+
+        if ($request->filled('from_date')) {
+            $query->whereDate(
+                'created_at',
+                '>=',
+                $request->from_date
+            );
+        }
+
+        if ($request->filled('to_date')) {
+            $query->whereDate(
+                'created_at',
+                '<=',
+                $request->to_date
+            );
+        }
+
+        $activities = $query
+            ->latest()
+            ->get();
+
+        $filename =
+            'security-activities-' .
+            now()->format('Y-m-d-H-i-s') .
+            '.csv';
+
+        $headers = [
+            'Content-Type' =>
+                'text/csv; charset=UTF-8',
+            'Content-Disposition' =>
+                'attachment; filename="' .
+                $filename .
+                '"',
+        ];
+
+        return response()->streamDownload(
+            function () use ($activities) {
+
+                $handle = fopen('php://output', 'w');
+
+                fputcsv($handle, [
+                    'ID',
+                    'Event',
+                    'Status',
+                    'Description',
+                    'IP Address',
+                    'User Agent',
+                    'Date',
+                ]);
+
+                foreach ($activities as $activity) {
+
+                    fputcsv($handle, [
+                        $activity->id,
+                        $activity->event,
+                        $activity->status,
+                        $activity->description,
+                        $activity->ip_address,
+                        $activity->user_agent,
+                        $activity->created_at,
+                    ]);
+                }
+
+                fclose($handle);
+            },
+            $filename,
+            $headers
+        );
     }
 
     // =========================================================
@@ -440,21 +744,48 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
+        $query = $user->tokens();
+
+        // NEW 5 - TOKEN SEARCH
+        if ($request->filled('search')) {
+
+            $search = $request->search;
+
+            $query->where(
+                'name',
+                'like',
+                "%{$search}%"
+            );
+        }
+
         $currentTokenId = optional(
             $user->currentAccessToken()
         )->id;
 
-        $tokens = $user->tokens()
+        $tokens = $query
             ->latest()
             ->get()
-            ->map(function ($token) use ($currentTokenId) {
+            ->map(function ($token) use (
+                $currentTokenId
+            ) {
+
                 return [
                     'id' => $token->id,
                     'name' => $token->name,
-                    'created_at' => $token->created_at?->format('Y-m-d H:i:s'),
-                    'last_used_at' => $token->last_used_at?->format('Y-m-d H:i:s'),
-                    'expires_at' => $token->expires_at?->format('Y-m-d H:i:s'),
-                    'is_current' => $token->id === $currentTokenId,
+                    'created_at' =>
+                        $token->created_at?->format(
+                            'Y-m-d H:i:s'
+                        ),
+                    'last_used_at' =>
+                        $token->last_used_at?->format(
+                            'Y-m-d H:i:s'
+                        ),
+                    'expires_at' =>
+                        $token->expires_at?->format(
+                            'Y-m-d H:i:s'
+                        ),
+                    'is_current' =>
+                        $token->id === $currentTokenId,
                 ];
             });
 
@@ -471,7 +802,8 @@ class AuthController extends Controller
     public function createToken(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:100',
+            'name' =>
+                'required|string|max:100',
         ]);
 
         $user = $request->user();
@@ -490,9 +822,12 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'API token created successfully.',
-            'token' => $token->plainTextToken,
-            'token_id' => $token->accessToken->id,
+            'message' =>
+                'API token created successfully.',
+            'token' =>
+                $token->plainTextToken,
+            'token_id' =>
+                $token->accessToken->id,
             'name' => $request->name,
         ]);
     }
@@ -501,8 +836,10 @@ class AuthController extends Controller
     // REVOKE ONE TOKEN
     // =========================================================
 
-    public function revokeToken(Request $request, int $tokenId)
-    {
+    public function revokeToken(
+        Request $request,
+        int $tokenId
+    ) {
         $user = $request->user();
 
         $token = $user->tokens()
@@ -510,6 +847,7 @@ class AuthController extends Controller
             ->first();
 
         if (!$token) {
+
             return response()->json([
                 'success' => false,
                 'message' => 'Token not found.',
@@ -530,29 +868,37 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'API token revoked successfully.',
+            'message' =>
+                'API token revoked successfully.',
         ]);
     }
 
     // =========================================================
-    // REVOKE ALL OTHER TOKENS
+    // REVOKE OTHER TOKENS
     // =========================================================
 
     public function revokeOtherTokens(Request $request)
     {
         $user = $request->user();
 
-        $currentToken = $user->currentAccessToken();
+        $currentToken =
+            $user->currentAccessToken();
 
         if (!$currentToken) {
+
             return response()->json([
                 'success' => false,
-                'message' => 'Current API token could not be identified.',
+                'message' =>
+                    'Current API token could not be identified.',
             ], 400);
         }
 
         $deleted = $user->tokens()
-            ->where('id', '!=', $currentToken->id)
+            ->where(
+                'id',
+                '!=',
+                $currentToken->id
+            )
             ->delete();
 
         $this->logSecurityActivity(
@@ -565,17 +911,124 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => "{$deleted} other API token(s) revoked successfully.",
+            'message' =>
+                "{$deleted} other API token(s) revoked successfully.",
             'revoked_count' => $deleted,
         ]);
     }
 
     // =========================================================
-    // START NEW AUTHENTICATOR SETUP
+    // NEW 6
+    // LOGOUT ALL DEVICES
     // =========================================================
 
-    public function startAuthenticatorSetup(Request $request)
+    public function logoutAllDevices(Request $request)
     {
+        $user = $request->user();
+
+        $count = $user->tokens()->count();
+
+        $user->tokens()->delete();
+
+        $this->logSecurityActivity(
+            $user,
+            'logout_all_devices',
+            'success',
+            "{$count} API token(s) were revoked from all devices.",
+            $request
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' =>
+                'All devices have been logged out.',
+            'revoked_count' => $count,
+        ]);
+    }
+
+    // =========================================================
+    // NEW 7
+    // CURRENT SESSION
+    // =========================================================
+
+    public function currentSession(Request $request)
+    {
+        $user = $request->user();
+
+        $token = $user->currentAccessToken();
+
+        return response()->json([
+            'success' => true,
+
+            'session' => [
+                'token_id' =>
+                    $token?->id,
+
+                'token_name' =>
+                    $token?->name,
+
+                'created_at' =>
+                    $token?->created_at?->format(
+                        'Y-m-d H:i:s'
+                    ),
+
+                'last_used_at' =>
+                    $token?->last_used_at?->format(
+                        'Y-m-d H:i:s'
+                    ),
+
+                'ip_address' =>
+                    $request->ip(),
+
+                'user_agent' =>
+                    $request->userAgent(),
+
+                'authenticated_user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ],
+            ],
+        ]);
+    }
+
+    // =========================================================
+    // RECOVERY CODES
+    // =========================================================
+
+    public function regenerateRecoveryCodes(
+        Request $request
+    ) {
+        $user = $request->user();
+
+        $newCodes =
+            $user->generateRecoveryCodes();
+
+        $this->logSecurityActivity(
+            $user,
+            'recovery_codes_regenerated',
+            'success',
+            'Emergency recovery codes were regenerated.',
+            $request
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' =>
+                '8 fresh emergency recovery codes generated successfully.',
+            'recovery_codes' =>
+                $user->getRecoveryCodesList(),
+            'plain_codes' => $newCodes,
+        ]);
+    }
+
+    // =========================================================
+    // START AUTHENTICATOR SETUP
+    // =========================================================
+
+    public function startAuthenticatorSetup(
+        Request $request
+    ) {
         $user = $request->user();
 
         $request->validate([
@@ -583,13 +1036,11 @@ class AuthController extends Controller
             'otp' => 'required|string|size:6',
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | Step-up authentication
-        |--------------------------------------------------------------------------
-        */
+        if (!Hash::check(
+            $request->password,
+            $user->password
+        )) {
 
-        if (!Hash::check($request->password, $user->password)) {
             $this->logSecurityActivity(
                 $user,
                 'security_settings',
@@ -600,14 +1051,17 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Current password is incorrect.',
+                'message' =>
+                    'Current password is incorrect.',
             ], 422);
         }
 
         if (!$user->google_2fa_secret) {
+
             return response()->json([
                 'success' => false,
-                'message' => 'Current authenticator is not configured.',
+                'message' =>
+                    'Current authenticator is not configured.',
             ], 422);
         }
 
@@ -618,6 +1072,7 @@ class AuthController extends Controller
             $request->otp,
             2
         )) {
+
             $this->logSecurityActivity(
                 $user,
                 'security_settings',
@@ -628,27 +1083,27 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Current Google Authenticator OTP is invalid.',
+                'message' =>
+                    'Current Google Authenticator OTP is invalid.',
             ], 422);
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | Generate new secret
-        |--------------------------------------------------------------------------
-        */
+        $newSecret =
+            $google2fa->generateSecretKey();
 
-        $newSecret = $google2fa->generateSecretKey();
+        $user->google_2fa_secret =
+            $newSecret;
 
-        $user->google_2fa_secret = $newSecret;
         $user->google_2fa_enabled = false;
+
         $user->save();
 
-        $qrCodeUrl = $google2fa->getQRCodeUrl(
-            config('app.name', '2FA Portal'),
-            $user->email,
-            $newSecret
-        );
+        $qrCodeUrl =
+            $google2fa->getQRCodeUrl(
+                config('app.name', '2FA Portal'),
+                $user->email,
+                $newSecret
+            );
 
         $this->logSecurityActivity(
             $user,
@@ -660,30 +1115,35 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'New authenticator secret generated. Verify the new OTP to enable 2FA.',
+            'message' =>
+                'New authenticator secret generated. Verify the new OTP to enable 2FA.',
             'qr_code' => $qrCodeUrl,
             'manual_key' => $newSecret,
         ]);
     }
 
     // =========================================================
-    // CONFIRM NEW AUTHENTICATOR
+    // CONFIRM AUTHENTICATOR
     // =========================================================
 
-    public function confirmAuthenticatorSetup(Request $request)
-    {
+    public function confirmAuthenticatorSetup(
+        Request $request
+    ) {
         $user = $request->user();
 
         $request->validate([
-            'otp' => 'required|string|size:6',
+            'otp' =>
+                'required|string|size:6',
         ]);
 
         $google2fa = new Google2FA();
 
         if (!$user->google_2fa_secret) {
+
             return response()->json([
                 'success' => false,
-                'message' => 'No authenticator secret exists.',
+                'message' =>
+                    'No authenticator secret exists.',
             ], 422);
         }
 
@@ -692,15 +1152,21 @@ class AuthController extends Controller
             $request->otp,
             2
         )) {
+
             return response()->json([
                 'success' => false,
-                'message' => 'Invalid OTP. Please scan the new QR code and try again.',
+                'message' =>
+                    'Invalid OTP. Please scan the new QR code and try again.',
             ], 422);
         }
 
         $user->google_2fa_enabled = true;
 
-        if (empty($user->two_factor_recovery_codes)) {
+        if (
+            empty(
+                $user->two_factor_recovery_codes
+            )
+        ) {
             $user->generateRecoveryCodes();
         } else {
             $user->save();
@@ -716,7 +1182,8 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'New authenticator successfully enabled.',
+            'message' =>
+                'New authenticator successfully enabled.',
         ]);
     }
 
@@ -724,8 +1191,9 @@ class AuthController extends Controller
     // DISABLE 2FA
     // =========================================================
 
-    public function disableTwoFactor(Request $request)
-    {
+    public function disableTwoFactor(
+        Request $request
+    ) {
         $user = $request->user();
 
         $request->validate([
@@ -733,7 +1201,11 @@ class AuthController extends Controller
             'otp' => 'required|string|size:6',
         ]);
 
-        if (!Hash::check($request->password, $user->password)) {
+        if (!Hash::check(
+            $request->password,
+            $user->password
+        )) {
+
             $this->logSecurityActivity(
                 $user,
                 '2fa_disabled',
@@ -744,14 +1216,17 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Current password is incorrect.',
+                'message' =>
+                    'Current password is incorrect.',
             ], 422);
         }
 
         if (!$user->google_2fa_secret) {
+
             return response()->json([
                 'success' => false,
-                'message' => '2FA is not configured.',
+                'message' =>
+                    '2FA is not configured.',
             ], 422);
         }
 
@@ -762,6 +1237,7 @@ class AuthController extends Controller
             $request->otp,
             2
         )) {
+
             $this->logSecurityActivity(
                 $user,
                 '2fa_disabled',
@@ -772,7 +1248,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Current Google Authenticator OTP is invalid.',
+                'message' =>
+                    'Current Google Authenticator OTP is invalid.',
             ], 422);
         }
 
@@ -789,7 +1266,8 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '2FA has been disabled successfully.',
+            'message' =>
+                '2FA has been disabled successfully.',
         ]);
     }
 
@@ -802,7 +1280,9 @@ class AuthController extends Controller
         $user = $request->user();
 
         if ($user) {
-            $token = $user->currentAccessToken();
+
+            $token =
+                $user->currentAccessToken();
 
             $this->logSecurityActivity(
                 $user,
@@ -819,7 +1299,8 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Logged out successfully.',
+            'message' =>
+                'Logged out successfully.',
         ]);
     }
 }

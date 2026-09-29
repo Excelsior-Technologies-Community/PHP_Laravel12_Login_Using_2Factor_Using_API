@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -46,8 +47,14 @@ class User extends Authenticatable
         $plainCodes = [];
 
         for ($i = 0; $i < 8; $i++) {
-            $part1 = strtoupper(bin2hex(random_bytes(2)));
-            $part2 = strtoupper(bin2hex(random_bytes(2)));
+
+            $part1 = strtoupper(
+                bin2hex(random_bytes(2))
+            );
+
+            $part2 = strtoupper(
+                bin2hex(random_bytes(2))
+            );
 
             $code = "{$part1}-{$part2}";
 
@@ -59,7 +66,9 @@ class User extends Authenticatable
             $plainCodes[] = $code;
         }
 
-        $this->two_factor_recovery_codes = $codes;
+        $this->two_factor_recovery_codes =
+            $codes;
+
         $this->save();
 
         return $plainCodes;
@@ -68,17 +77,21 @@ class User extends Authenticatable
     /**
      * Verify and consume recovery code.
      */
-    public function verifyAndConsumeRecoveryCode(string $code): bool
-    {
+    public function verifyAndConsumeRecoveryCode(
+        string $code
+    ): bool {
+
         $cleanedCode = strtoupper(
             trim(
                 str_replace(' ', '', $code)
             )
         );
 
-        $codes = $this->two_factor_recovery_codes ?? [];
+        $codes =
+            $this->two_factor_recovery_codes ?? [];
 
         foreach ($codes as $index => $item) {
+
             $existingCode = strtoupper(
                 trim(
                     $item['code'] ?? ''
@@ -87,16 +100,30 @@ class User extends Authenticatable
 
             if (
                 (
-                    $existingCode === $cleanedCode ||
-                    str_replace('-', '', $existingCode) ===
-                    str_replace('-', '', $cleanedCode)
+                    $existingCode === $cleanedCode
+                    ||
+                    str_replace(
+                        '-',
+                        '',
+                        $existingCode
+                    )
+                    ===
+                    str_replace(
+                        '-',
+                        '',
+                        $cleanedCode
+                    )
                 )
                 &&
                 empty($item['used_at'])
             ) {
-                $codes[$index]['used_at'] = now()->toDateTimeString();
 
-                $this->two_factor_recovery_codes = $codes;
+                $codes[$index]['used_at'] =
+                    now()->toDateTimeString();
+
+                $this->two_factor_recovery_codes =
+                    $codes;
+
                 $this->save();
 
                 return true;
@@ -111,7 +138,9 @@ class User extends Authenticatable
      */
     public function getRecoveryCodesList(): array
     {
-        return $this->two_factor_recovery_codes ?? [];
+        return
+            $this->two_factor_recovery_codes
+            ?? [];
     }
 
     /**
@@ -122,16 +151,19 @@ class User extends Authenticatable
         return count(
             array_filter(
                 $this->getRecoveryCodesList(),
-                fn ($code) => empty($code['used_at'])
+                fn ($code) =>
+                    empty($code['used_at'])
             )
         );
     }
 
     /**
-     * Security activities relationship.
+     * Security activities.
      */
-    public function securityActivities()
+    public function securityActivities(): HasMany
     {
-        return $this->hasMany(SecurityActivity::class);
+        return $this->hasMany(
+            SecurityActivity::class
+        );
     }
 }
